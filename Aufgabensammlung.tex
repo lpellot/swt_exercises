@@ -1,0 +1,522 @@
+\documentclass[12pt]{exam}
+\usepackage[utf8]{inputenc}
+
+\usepackage{verbatim}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage[ngerman]{babel}
+\usepackage{tikz}
+\usetikzlibrary{petri, positioning}
+
+\newcommand{\class}{Softwaretechnik}
+\newcommand{\term}{Aufgabensammlung}
+\newcommand{\examnum}{}
+\newcommand{\examdate}{Stand: \today{}}
+\newcommand{\timelimit}{Gibts nicht}
+
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{\class}{\examnum\ - Page \thepage\ of \numpages}{\examdate}
+\runningheadrule
+
+
+\begin{document}
+
+\noindent
+\begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r @{\extracolsep{6pt}} l}
+\textbf{\class} & \textbf{Name:} & \makebox[2in]{\hrulefill}\\
+\textbf{\term} &&\\
+\textbf{\examnum} &&\\
+\textbf{\examdate} &&\\
+\textbf{Time Limit: \timelimit} & Teaching Assistant & \makebox[2in]{\hrulefill}
+\end{tabular*}\\
+\rule[2ex]{\textwidth}{2pt}
+
+This exam contains \numpages\ pages (including this cover page) and \numquestions\ questions.\\
+Total of points is \numpoints.
+
+Rest of introduction. Rest of introduction. Rest of introduction. Rest of introduction. Rest of introduction. Rest of introduction. Rest of introduction. Rest of introduction. 
+
+\begin{comment}
+\begin{center}
+Grade Table (for teacher use only)\\
+\addpoints
+\gradetable[v][questions]
+\end{center}
+\end{comment}
+
+\noindent
+\rule[2ex]{\textwidth}{2pt}
+
+\begin{questions}
+
+\question[5] Geben sie durch Ankreuzen an eines der Antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind. \\
+\addpoints
+\begin{tabular}{| p{12cm} | c | c |} \hline
+\textbf{Aussage} & \textbf{Wahr} & \textbf{Falsch} \\ \hline
+Auf den Feinentwurf kann man verzichten, auf den Implementierungsentwurf jedoch nicht. & & \\ \hline
+Kleine Kohäsion und große Kopplung sind Zeichen eines guten Entwurfs. & & \\ \hline
+Eine gute Modularisierung ist eine wichtige Voraussetzung für eine arbeitsteilige Implementierung. & & \\ \hline
+Das Transformationszentrum in einem Datenflussdiagramm ergibt sich rein aus dessen Struktur. & & \\ \hline
+Ein Verteilungsdiagramm zeigt die Kommunikationsverbindungen und Abhängigkeiten von zur Laufzeit physisch vorhandenen Ressourcen. & & \\ \hline
+\end{tabular}
+
+\question[2] Nennen sie \textbf{zwei Vorteile von Entwurfsmustern}.
+\addpoints
+
+\question[2] In der unteren Abbildung ist ein schematisches DFD dargestellt. Woran können Sie erkennen, ob es sich bei dem Prozess \textbf{D} um ein Transformationszentrum oder ein Transaktionszentrum handelt? \\
+\addpoints
+\begin{tikzpicture}
+    \matrix[row sep = 1cm, column sep = 1cm]{
+        % 1st row
+        \node[place, white] (00) {}; &
+        \node[place] (A) {A}; &
+        \node[place] (B) {B}; &
+        \node[place, white] (03) {}; &
+        \node[place] (E) {E}; &
+        \node[place] (F) {F}; &
+        \node[place, white] (06) {}; \\
+        % 2nd row
+        \node[place, white] (10) {}; &
+        \node[place, white] (11) {}; &
+        \node[place] (C) {C}; &
+        \node[place] (D) {D}; &
+        \node[place] (G) {G}; &
+        \node[place, white] (15) {}; &
+        \node[place, white] (16) {}; \\
+        % 3rd row
+        \node[place, white] (20) {}; &
+        \node[place, white] (21) {}; &
+        \node[place, white] (22) {}; &
+        \node[place, white] (23) {}; &
+        \node[place] (H) {H}; &
+        \node[place, white] (25) {}; &
+        \node[place, white] (26) {}; \\
+    };
+    
+    \draw[->] (00) -- (A);
+    \draw[->] (A) -- (B);
+    \draw[->] (B) -- (D);
+    \draw[->] (E) -- (F);
+    \draw[->] (F) -- (06);
+    \draw[->] (11) -- (C);
+    \draw[->] (C) -- (D);
+    \draw[->] (D) -- (E);
+    \draw[->] (D) -- (G);
+    \draw[->] (G) -- (15);
+    \draw[->] (D) -- (H);
+    \draw[->] (H) -- (25);
+\end{tikzpicture}
+
+\question[2] \textbf{Erklären} Sie die \textbf{Merkmale der Strukturierten Methoden}.
+\addpoints
+
+\question[3] \textbf{Erklären} Sie die \textbf{Bedeutung} folgender Notationselemente aus einem \textbf{Datendlussdiagramm} in jeweils einem Satz.
+\addpoints
+\begin{parts}
+    \part \tikz \draw (0, 0) rectangle (2, 1);
+    \part \tikz \draw (0, 0) circle (5mm);
+    \part \tikz \draw[->] (0, 0) -- (2, 0);
+\end{parts}
+
+\question[2] Wie können bei der \textbf{Strukturierten Analyse} (SA) Prozesse beschrieben werden?
+
+\question[4]
+\noaddpoints
+\begin{parts}
+    \part[2] Erläutern sie kurz den Unterschied zwischen einem \textbf{Programm} und einem \textbf{Softwaresystem}.
+    \part[1] \textbf{Kreuzen} Sie \textbf{Ihre Antwort an}. \\Wie hoch ist die durchschnittliche Produktivität pro Person bei sicherheitskritischer Software (inklusive Test und Dokumentation) in \emph{Zeilen ausführbares Programm pro Tag}?
+    \begin{checkboxes}
+        \choice 50 Zeilen pro Tag
+        \choice 25 Zeilen pro Tag
+        \choice 15 Zeilen pro Tag
+        \choice 2 Zeilen pro Tag
+    \end{checkboxes}
+    \part[1] \textbf{Kreuzen} Sie {Ihre Antwort an}. \\Wie viel Prozent der Programmierer in Unternehmen sind laut Vorlesung durchschnittlich mit der Wartung und Verbesserung von altem Code beschäftigt?
+    \begin{checkboxes}
+        \choice $<10\%$
+        \choice $10-29\%$
+        \choice $30-50\%$
+        \choice $51-70\%$
+        \choice $>70\%$
+    \end{checkboxes}
+\end{parts}
+\addpoints
+
+\question[8] \textbf{Beantworten} Sie die folgenden Fragen. 
+\noaddpoints
+\begin{parts}
+    \part[2] \textbf{Erklären} Sie in Stichworten den Unterschied zwischen einem \textbf{präskriptiven} und einem \textbf{deskriptiven} Modell.
+    \part[2] \textbf{Nennen} Sie \textbf{vier gebräuchliche Darstellungsformen für Modelle} im Software Engineering.
+    \part[2] \textbf{Nennen} sie \textbf{vier Aspekte}, die durch den \textbf{Einsatz von Modellen verbessert} werden können.
+    \part[2] Die Abbildung zeigt die Unterstützung einer riskanten Modifikation durch Modelle. \textbf{Ergänzen} sie die Abbildung um die fehlenden Begriffe. \\
+    \begin{tikzpicture}[node distance = 3 cm]
+        \node[place] (00) {}
+            node[xshift = -20mm] {Ist-Zustand};
+        \node[place, right = of 00] (01) {}
+            node[xshift = 70mm, yshift = -3mm]{\underline{\hspace{40mm}}};
+        \node[place, below = of 00] (10) {}
+            node[xshift = -20mm, yshift = -40mm, align = center] {Geplanter \\Zustand};
+        \node[place, right = of 10] (11) {}
+            node[xshift = 70mm, yshift = -43mm] {\underline{\hspace{40mm}}};
+        
+        \draw[->] (00) -- (01)
+            node[midway, fill = white, yshift = -4mm] {Modellierung};
+        \draw[->] (00) -- (10)
+            node[midway, fill = white, align = center, xshift = -15mm] {Riskante \\Modifikation};
+        \draw[->] (01) -- (11)
+            node[midway, xshift = 30mm, yshift = -3mm] {\underline{\hspace{40mm}}};
+        \draw[->] (11) -- (10);
+
+    \end{tikzpicture}
+\end{parts}
+\addpoints
+
+\question[3] Softwaregestützte Systeme können nach Anwendungsgebiet grob in drei Klassen (z. B. "`technische Systeme"') eingeordnet werden. \textbf{Ordnen} Sie die folgenden Beispiele jeweils der \textbf{richtigen Klasse} zu.
+\addpoints
+{
+\checkboxchar{\underline{\hspace{4cm}}}
+\begin{checkboxes}
+\choice Bubblesort
+\choice Flugleitsystem
+\choice Wettervorhersage
+\choice Autopilot
+\choice Tetris
+\choice Facebook
+\end{checkboxes}
+}
+
+\question[2] \textbf{Nennen} Sie \textbf{zwei Wechselwirkungen} zwischen System und Systemumgebung.
+\addpoints
+
+\question[3] Tragen Sie in die Abbildung die \textbf{Bezeichnungen der Phasen des System Engineering-Prozesses} ein. \\
+\addpoints
+\begin{tikzpicture}[transition/.style={minimum height = 1.5cm, minimum width = 3cm, draw = black}]
+    \node[transition] (00) {};
+    \node[transition, xshift = 4cm, yshift = 0cm] (01) {};
+    \node[transition, xshift = 8cm, yshift = 0cm] (02) {};
+    \node[transition, xshift = 12cm, yshift = 0cm] (03) {};
+    
+    \node[transition, xshift = 4cm, yshift = -2.5cm] (11) {Ausmusterung};
+    \node[transition, xshift = 8cm, yshift = -2.5cm] (12) {};
+    \node[transition, xshift = 12cm, yshift = -2.5cm] (13) {};
+
+    \draw[->] (00) -- (01);
+    \draw[->] (01) -- (02);
+    \draw[->] (02) -- (03);
+    \draw[->] (03) -- (13);
+    \draw[->] (13) -- (12);
+    \draw[->] (12) -- (11);
+\end{tikzpicture}
+
+\question[2] Struktur und Merkmale von im Prozess benötigten Dokumenten gehören zu den Inhalten eines Prozessmodells. \textbf{Nennen} Sie \textbf{vier weitere Inhalte} eines Prozessmodells.
+\addpoints
+
+\question[3] Zu einem Prozessmodell gehören beispielsweise Prüf- und Fertigstellungskriterien. \textbf{Nennen} Sie \textbf{drei weitere Inhalte} eines Prozessmodells.
+\addpoints
+
+\question[2] Ordnen Sie das \textbf{Wasserfallmodell} ein, indem Sie die fehlenden Elemente in der Abbildung ergänzen. \\
+\addpoints
+\begin{tikzpicture}[grow = right,
+                    level 1/.style={sibling distance = 6em},
+                    level 2/.style={sibling distance = 3em},
+                    level distance = 4cm,
+                    transition/.style={text width = 3cm, minimum height = 1cm, draw = black}]
+    \node[transition]{Vorgehens- und Prozessmodelle}
+    child{node[transition]{}}
+    child{node[transition]{}}
+    child{node[transition]{}
+        child{node[transition]{}}
+        child{node[transition]{}
+            child{node[transition]{}}
+        }
+    };
+\end{tikzpicture}
+
+\question[2] Nennen sie zwei nicht-lineare Prozessmodelle.
+\addpoints
+
+\question[3] \textbf{Nennen} Sie \textbf{zwei Vorteile} und \textbf{einen Nachteil} des \textbf{klassischen Wasserfallmodells}.
+\addpoints
+{
+\checkboxchar{ }
+\begin{checkboxes}
+    \choice \textbf{+}
+    \choice \textbf{+}
+    \choice \textbf{-}
+\end{checkboxes}
+}
+
+\question[4] \textbf{Erläutern} Sie die Begriffe \textbf{Verifikation} und \textbf{Validation}.
+\addpoints
+
+\question[2] Systemerstellung (SE)  ist ein Submodell des V-Modell 97. Nennen Sie zwei weitere Submodelle des V-Modells 97.
+\addpoints
+
+\question[2] Ordnen Sie das V-Modell 97 in den \textbf{Kontext der Vorgehens- und Prozessmodelle} ein.
+\addpoints
+
+\question[2] Geben sie durch Ankreuzen des jeweiligen Feldes an, ob die folgenden Aussagen wahr oder falsch sind.
+\addpoints
+\begin{tabular}{| p{12cm} | c | c |}
+    Zu den Submodellen des V-Modells geh"ort das Werkzeugmanagement. & & \\ \hline
+    Das Spiralmodell ist ein generisches Modell f"ur Projektmanagement. & & \\ \hline
+\end{tabular}
+
+\question[3] Die Abbildung zeigt die Aufwandsverteilung in Abh"angigkeit der Projektgr"o"se. \\
+\noaddpoints
+\begin{tikzpicture}
+    \begin{scope}[xshift = 1cm]
+        \draw (0, 0) -- (8, 0) -- (8, 2) -- (0, 1) -- cycle;
+        \draw (0, 1) -- (8, 2) node[xshift = -2cm, yshift = 1.5cm] {Dokumentation} -- (8, 2.5) -- (0, 4) -- cycle;
+        \draw (0, 4) -- (8, 2.5) -- (8, 4) -- (0, 4.5) -- cycle;
+        \draw (0, 4.5) -- (8, 4) -- (8, 5) -- (0, 5) -- cycle;
+    \end{scope}
+
+    %TODO: x axis blabla
+    \foreach \y/\ytext in {0/$0\%$, .5/$10\%$, 1/$20\%$, 1.5/$30\%$, 2/$40\%$, 2.5/$50\%$, 3/$60\%$, 3.5/$70\%$, 4/$80\%$, 4.5/$90\%$, 5/$100\%$}
+        \node[yshift = \y cm, font = \footnotesize] {\ytext};
+\end{tikzpicture}
+\begin{parts}
+    \part[1.5] Tragen Sie die fehlenden Aktivit"aten \textbf{Management, Codierung und Qualit"atssicherung} in die Abbildung ein.
+    \part[1.5] Begr"unden Sie in \textbf{ganzen S"atzen}, warum sich die Aufwandsverteilung so verh"alt.
+\end{parts}
+\addpoints
+
+\question[6] Das \textbf{V-Modell 97} legt Aktivit"aten, Produkte und Zust"ande des Entwicklungsprozesses fest. Tragen sie die \textbf{Aktivit"aten} des \textbf{Submodells f"ur Systemerstellung (SE)} in die Abbildung ein.\\
+\addpoints
+\begin{tikzpicture}[rectangle/.style={draw = black, fill = white, minimum width = 3cm, minimum height = 1cm}]
+    \draw (0, 0) -- (5, -10) -- (10, 0);
+    \foreach \xshift/\yshift in {0, 1/2, 2/4, 3/6, 4/8, 5/10, 10/0, 9/2, 8/4}
+        \node[xshift = \xshift cm, yshift = -\yshift cm, rectangle] {};
+\end{tikzpicture}
+
+\question[10]
+\noaddpoints
+\begin{parts}
+    \part[6] Vergleichen Sie das \textbf{V-Modell 97} mit dem Prozessmodell \textbf{Prototyping}. Beziehen Sie in der Verglech auch die Vor- und Nachteile beider Modelle mit ein.
+    \part[4] Nennen Sie \textbf{zwei weitere Prozessmodelle} und beschreiben Sie jedes in ein bis zwei S"atzen.
+\end{parts}
+\addpoints
+
+\question[4] Geben Sie durch Ankreuzen des jeweiligen Antwortfeldes an, ob die folgenden Aussagen wahr oder falsch sind. \\
+\addpoints
+\begin{tabular}{| p{12cm} | c | c |} \hline
+    \textbf{Aussage} & \textbf{wahr} & \textbf{falsch} \\ \hline
+    Beim horizontalen Prototyp werden ausgew"ahlte Teile des Systems durch alle horizontalen Schichten realisiert. & & \\ \hline
+    MDA steht auch f"ur Model Driven Architecture. & & \\ \hline
+    Aus Modellen generierter Code erf"ullt die Anforderungen stets ohne weitere Pr"ufung. & & \\ \hline
+    Code and Fix ist auch ein Prozessmodell. & & \\ \hline
+\end{tabular}
+
+\question[3] \textbf{Erg"anzen} Sie folgende Aussagen des \textbf{Agilen Manifests}.
+\addpoints
+\begin{parts}
+    \part \underline{\hspace{5cm}} sind wichtiger als Prozesse und Werkzeuge.
+    \part \underline{\hspace{5cm}} sind wichter als ausf"uhrliche Dokumentation.
+    \part \underline{\hspace{5cm}} ist wichtiger, als einem Plan zu folgen.
+\end{parts}
+
+\question[2] Erg"anzen Sie zwei der folgenden drei S"atze aus dem \textbf{Agilen Manifest von 2001}.
+\addpoints
+\begin{parts}
+    \part Individuen und Interaktionen sind wichtiger als \underline{\hspace{5cm}}.
+    \part \underline{\hspace{5cm}} sind wichtiger als ausf"uhrliche Dokumentation.
+    \part Die Zusammenarbeit mit dem Kunden ist wichtiger als \underline{\hspace{5cm}}.
+\end{parts}
+
+\question[2] Erkl"aren Sie kurz den Unterschied zwischen \textbf{explorativem} und \textbf{evolution"arem Prototyping}.
+\addpoints
+
+\question[4] Was ist der \textbf{Unterschied} zwischen \textbf{explorativem} und \textbf{evolution"arem Prototyping}? Wann wird welcher Typ eingesetzt?
+\addpoints
+
+{
+\checkboxchar{ }
+\question \textbf{Nennen} Sie \textbf{zwei Vorteile} und \textbf{zwei Nachteile} des \textbf{Prototyping}.
+\addpoints
+\begin{checkboxes}
+    \choice \textbf{+}
+    \choice \textbf{+}
+    \choice \textbf{-}
+    \choice \textbf{-}
+\end{checkboxes}
+}
+
+\question[4] Erkl"aren Sie die folgenden Begriffe und nennen sie jeweils ein Beispiel.
+\addpoints
+\begin{parts}
+    \part Wegwerf-Prototyp
+    \part Evolution"arer Prototyp
+    \part Horizontaler Prototyp
+    \part Vertikaler Prototyp
+\end{parts}
+
+\question[3] Erg"anzen Sie die fehlenden Phasen des V-Modells in der Abbildung. \\
+\addpoints
+\begin{tikzpicture}[rectangle/.style={draw = black, fill = white, minimum width = 3cm, minimum height = 1cm}]
+    \draw (0, 0) -- (5, -10) -- (10, 0);
+    \foreach \xshift/\yshift in {0, 1/2, 3/6, 4/8, 5/10, 8/4}
+        \node[xshift = \xshift cm, yshift = -\yshift cm, rectangle] {};
+    \node[xshift = 2cm, yshift = -4cm, rectangle] {SW-/HW-Anforderungsanalyse};
+    \node[xshift = 10cm, rectangle] {"Uberleitung in die Nutzung};
+    \node[xshift = 9cm, yshift = -2cm, rectangle] {System-Integration};
+\end{tikzpicture}
+
+\question[4] Nennen sie zwei gute und zwei schlechte Kriterien f"ur das Ende von Pr"ufaktivit"aten.
+\addpoints
+
+\question[5] In zwei unabh"angigen Pr"ufvorg"angen des selben St"uck Software wurden einmal 100 Fehler und einmal 60 Fehler gefunden. Davon wurden 30 Fehler in beiden Pr"ufvorg"angen gefunden.
+\noaddpoints
+\begin{parts}
+    \part[1] Wie nennt man das Verfahren, mit dem aus den oben gegebenen Informationen die Gesamtfehlerzahl gesch"atzt werden kann?
+    \part[2] Wie hoch wird die Gesamtfehlerzahl f"ur das gegebene Beispiel mit dieser Methode gesch"atzt?
+    \part[2] Unter welchen Umst"anden sollte diese Methode besser nicht angewendet werden? Nennen sie zwei F"alle.
+\end{parts}
+
+\question[2] Bei einem Review mit zwei Gutachtern findet der eine Gutachter 147 Fehler, der andere 122 davon verschiedene Fehler. Enth"alt die Software vermutlich weitere Fehler? Begr"unden Sie Ihre Antwort.
+\addpoints
+
+\question[5] Von einem St"uck Software wissen wir, dass es 20 echte Fehler enth"alt. Nach der Durchf"uhrung einer Restfehlersch"atzung mittels error seeding haben die Pr"ufer von den 15 injizierten Fehlern drei gefunden. Wie viele echte Fehler wurden zur Restfehlersch"atzung injiziert? Welche Schw"ache hat dieses Verfahren der Restfehlersch"atzung?
+\addpoints
+
+\question[5] Von einem St"uck Software wissen wir, dass es 40 echte Fehler enth"alt. Nach der Durchf"uhrung einer Restfehlersch"atzung mittels error seeding haben die Pr"ufer acht echte Fehler und f"unf injizierte Fehler gefunden. Wie viele Fehler wurden zur Restfehlersch"atzung injiziert? Welche Schw"ache hat dieses Verfahren der Restfehlersch"atzung?
+\addpoints
+
+\question[3] Erkl"aren Sie die Idee der Restfehlersch"atzung durch Error Seeding und leiten Sie die entsprechende Berechnungsformel ab.
+\addpoints
+
+\question[4] Erkl"aren Sie die zugrundeliegende Idee der Defensiven Programmierung und Redundanten Programmierung. Erl"autern Sie auch die entsprechenden Umsetzungsm"oglichkeiten.
+\addpoints
+
+\question[6] Geben sie durch Ankreuzen eines der Antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind. \\
+\addpoints
+\begin{tabular}{| p{12cm} | c | c |} \hline
+    Aussage & wahr & falsch \\ \hline
+    Eine dynamische Pr"ufung kann im V-Modell zu jedem Zeitpunkt durchgef"uhrt werden. & & \\ \hline
+    Der letzte Schritt eines Reviews ist stets die Nacharbeit. & & \\ \hline
+    Der Vorteil von Reviews ist, dass sie bei hoher Wirksamkeit nur wenig Kosten verursachen. & & \\ \hline
+    Je kleiner das Vorhaben ist, desto gr"o"ser sollte der Anteil der Arbeitsergebnisse sein, der durch Reviews gepr"uft wird. & & \\ \hline
+    Die Erhebung von Metriken ist kein systematischer Test. & & \\ \hline
+    Ein Audit kann ein Review ersetzen. & & \\ \hline
+\end{tabular}
+
+\question[6] Geben sie durch Ankreuzen eines der Antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind. \\
+\addpoints
+\begin{tabular}{| p{12cm} | c | c |} \hline
+    Aussage & wahr & falsch \\ \hline
+    Der Glasbox-Test eignet sich gut zum Testen ganzer Systeme. & & \\ \hline
+    Im Schnitt sieben Fehler pro 1000 Programmzeilen sind normal f"ur sicherheitskritische Software. & & \\ \hline
+    Testen ist eine typische konstruktive Qualit"atssicherungsma"snahme. & & \\ \hline
+    Beim systematischen Testen geht es darum, die Korrektheit der Software nachzuweisen. & & \\ \hline
+    An Dokumenten f"ur ein technisches Review braucht man neben dem Pr"ufling nur noch Referenzunterlagen (zum Beispiel Spezifikation, Richtlinien, Fragenkataloge, Standards). & & \\ \hline
+    Der Einsatz eines Vorgehensmodells ist eine analytische Qualit"atssicherungsma"snahme. & & \\ \hline
+\end{tabular}
+
+\question[8] Geben sie durch Ankreuzen eines der Antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind.
+\addpoints
+\begin{tabular}{| p{12cm} | c | c |} \hline
+    Aussage & Wahr & Falsch \\ \hline
+    Ein Systemtest testet das gesamte Softwaresystem in der realen Umgebung. & & \\ \hline
+    Zwei Testf"alle sind hinsichtlich des testerfolgs stark "aquivalent, wenn beide geeignet sind, einen bestimmten Fehler anzuzeigen. & & \\ \hline
+    Die Pfad"uberdeckung ist zu 100\% erf"ullt, sobald die Zweig"uberdeckung zu 100\% erf"ullt ist. & & \\ \hline
+    Mutationstests sind strukturelle Tests. & & \\ \hline
+    Der Zweck einer statischen Pr"ufung ist f"u die Pr"ufung irrelevant. & & \\ \hline
+    Der letzte Schritt eines Reviews ist stets die Nacharbeit. & & \\ \hline
+    Bei einer Restfehlersch"atzung mittels error seeding wurden 25 Fehler injeziert. Die Pr"ufer haben 8 echte Fehler und 5 injuzierte Fehler gefunden. Daraus l"asst sich schlie"sen, dass 40 echte Fehler existieren. & & \\ \hline
+    Die Erhebung von Metriken ist ein systematischer Test. & & \\ \hline1
+\end{tabular}
+
+\question[8] Geben sie durch Ankreuzen eines der antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind.
+\addpoints
+\begin{tabular}{| p{12cm} | c | c |} \hline
+    Aussage & Wahr & Falsch \\ \hline
+    "Aquivalenzklassen beim Blackbox-Test sind Teilbereiche des eingabebereichs einer funktion, die sich bez"uglich ihres Funktionswerts gleich verhalten. & & \\ \hline
+    Die Zyklomatische Komplexit"at basiert auf der Annahme, dass die Komplexit"at eines Programms von der Anzahl der Anweisungen abh"angt. & & \\ \hline
+    Die L"ange des Benutzerhandbuchs ist ein Softwareattribut. & & \\ \hline
+    Es ist generell m"oglich, bei einem Glassbox-Test immer alle vorhandenen Pfade auszuf"uhren. & & \\ \hline
+    Ein guter Test beginnt mit der Planungsphase. & & \\ \hline
+    Unter Plausibilit"at einer Metrik versteht man, dass die empirische Bewertung der Ma"szahl mit den Beobachtungen korelliert. & & \\ \hline
+    Inspektion ist eine Form des Reviews. & & \\ \hline
+    Bei einem Review wird neben dem Pr"ufling auch der Autor begutachtet. & & \\ \hline
+\end{tabular}
+
+\question[5] Nennen sie f"ur die Phasen Anforerungsanalyse und Entwurf
+\noaddpoints
+\begin{parts}
+    \part[2] den Zusammenhand beider Phasen.
+    \part[1] eine Gemeinsamkeit beider Phasen.
+    \part[2] zwei Unterschiede beider Phasen.
+\end{parts}
+\addpoints
+
+\question[2] Nennen sie zwei Aspekte, die beim entwurd verglichen mit der Analyse zus"atzlich ber"ucksichtigt werden m"ussen.
+\addpoints
+
+\question[4] Nennen sie vier Entwurdskonzepte.
+\addpoints
+
+\question[6] Modularit"at ist eines der wichtigsten Entwurfskonzepte. Nennen und erl"autern sie drei weitere wichtige Entwurfskonzepte.
+\addpoints
+
+\question[3] Nennen sie je ein Beispiel f"ur funktionale Abstraktion, Datenabstraktion und Kotrollabstraktion.
+\addpoints
+
+\question[2] Nennen sie zwei positive Effekte durch eine hohe Modularit"at beim Software-Entwurf?
+\addpoints
+
+\question[4] Ein guter objektorientierter Entwurd hat einen starken logischen Zusammenhang innerhalb einer Komponente und pr"azise definierte, minimale Schnittstellen zwischen den Komponenten. Wie hei"sen die beiden zugeh"origen Qualit"atskriterien? Geben sie die Formel an, die aus diesen beiden Kriterien das Optimum berechnet.
+\addpoints
+
+\question[2] Erkl"aren sie kurz die Begriffe Koh"asion und Kopplung.
+\addpoints
+
+\question[4] Welcher Zusammenhang besteht zwischen Koh"asion und Kopplung und der Qualit"at eines Software-Entwurfs?
+\addpoints
+
+\begin{comment}
+{%
+% changing choice items style locally
+\renewcommand*\thechoice{\arabic{choice}} 
+\renewcommand*\choicelabel{\thechoice)}
+%
+\question[2] Element with $Z=92$ is:
+\begin{multicols}{2}
+\begin{choices}
+\choice H
+\choice O
+\choice F
+\choice S
+\choice Ba
+\choice Pb
+\choice U
+\choice Pu
+\end{choices}
+\end{multicols}
+}%
+
+\question[10]
+In no more than one paragraph, explain why the earth is round.
+\makeemptybox{2in}
+
+\question[20]
+Explain blah, blah\ldots
+\makeemptybox{\fill}
+
+\newpage
+
+\question[20]
+Explain blah, blah\ldots
+\fillwithlines{\fill}
+
+\newpage
+
+\question[20]
+Explain blah, blah\ldots
+\fillwithdottedlines{8em}
+\end{comment}
+
+\end{questions}
+
+\end{document}
