@@ -414,7 +414,7 @@ Ein Verteilungsdiagramm zeigt die Kommunikationsverbindungen und Abhängigkeiten
     Der Einsatz eines Vorgehensmodells ist eine analytische Qualit"atssicherungsma"snahme. & & \\ \hline
 \end{tabular}
 
-\question[8] Geben sie durch Ankreuzen eines der Antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind.
+\question[8] Geben sie durch Ankreuzen eines der Antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind. \\
 \addpoints
 \begin{tabular}{| p{12cm} | c | c |} \hline
     Aussage & Wahr & Falsch \\ \hline
@@ -428,7 +428,7 @@ Ein Verteilungsdiagramm zeigt die Kommunikationsverbindungen und Abhängigkeiten
     Die Erhebung von Metriken ist ein systematischer Test. & & \\ \hline1
 \end{tabular}
 
-\question[8] Geben sie durch Ankreuzen eines der antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind.
+\question[8] Geben sie durch Ankreuzen eines der antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind. \\
 \addpoints
 \begin{tabular}{| p{12cm} | c | c |} \hline
     Aussage & Wahr & Falsch \\ \hline
@@ -476,7 +476,78 @@ Ein Verteilungsdiagramm zeigt die Kommunikationsverbindungen und Abhängigkeiten
 \addpoints
 
 \question[8] Vervollst"andigen Sie das UML-Klassendiagramm in der Abbildung so, dass es folgenden Sachverhalt als Dom"anenmodell beschreibt. Vergessen Sie nicht, auch die Kardinalit"aten anzugeben! \\
-\emph{Tutorien an der Universit"at Ulm \\Ein Tutor hat einen Namen, eine E-Mail-Adresse und eine Adresse. Er oder die h"alt mindestens ein Tutorium. Kedes Tutorium wird von genau einem tutor geleitet. Ein Student (mit Name, Matrikelnummer und E-Mail) nimmt an genau einem Tutorium teil. An einem Tutorium k"onnen maximal 20 Studenten teilnehmen. Es gibt keine Tutorien ohne Teilnehmer. Tutorien finden an einem oder mehreren Terminen (mit Datum, Uhrzeit und Dauer) statt. Da mehrere R"aume zur Verf"ugung stehen, k"onnen Tutorien auch parallel stattfinden. Ein Stundenplan besteht aus beliebig vielen Terminen. Ein Termin kann auch in mehreren Stundenpl"anen auftauchen, muss aber in mindestens einem vorhanden sein. Auch leere Stundenpl"ane sind m"oglich. Einem Termin ist ein Raum zugeordnet. R"aume haben eine Raumbezeichung.}
+\emph{Tutorien an der Universit"at Ulm \\Ein Tutor hat einen Namen, eine E-Mail-Adresse und eine Adresse. Er oder die h"alt mindestens ein Tutorium. Kedes Tutorium wird von genau einem tutor geleitet. Ein Student (mit Name, Matrikelnummer und E-Mail) nimmt an genau einem Tutorium teil. An einem Tutorium k"onnen maximal 20 Studenten teilnehmen. Es gibt keine Tutorien ohne Teilnehmer. Tutorien finden an einem oder mehreren Terminen (mit Datum, Uhrzeit und Dauer) statt. Da mehrere R"aume zur Verf"ugung stehen, k"onnen Tutorien auch parallel stattfinden. Ein Stundenplan besteht aus beliebig vielen Terminen. Ein Termin kann auch in mehreren Stundenpl"anen auftauchen, muss aber in mindestens einem vorhanden sein. Auch leere Stundenpl"ane sind m"oglich. Einem Termin ist ein Raum zugeordnet. R"aume haben eine Raumbezeichung.} \\
+\addpoints
+\begin{tikzpicture}[title/.style={rectangle, minimum height = 2cm, minimum width = 3cm, draw = black}]
+    \matrix[column sep = 1.5cm, row sep = 1cm]{
+        %1st row
+        &
+        &
+        \node[title] (02) {}; \\
+        %2nd row
+        \node[title] (10) {}; &
+        \node[title] (11) {}; &
+        \node[title] (12) {}; \\
+        %3rd row
+        &
+        \node[title] (21) {}; &
+        \node[title] (22) {}; \\
+    };
+    
+    \draw (02) -- (12);
+    \draw (10) -- (11);
+    \draw (11) -- (12);
+    \draw (11) -- (21);
+    \draw (12) -- (22);
+\end{tikzpicture}
+
+\question[5] F"ur ein System sind folgende Anforderungen gegeben:
+\begin{itemize}
+    \item \emph{Das System verwaltet Pl"atze, Reservierungen, S"ale und Vorstellungen.}
+    \item \emph{Eine Reservierung besteht aus mehreren Pl"atzen (mindestens einem) und geh"ort zu genau einer Vorstellung.}
+    \item \emph{Zu einer vorstellung kann es mehrere (aber auch keine) Reservierung/-en geben.}
+    \item \emph{Eine Vorstellung findet in genau einem Saal statt. Ein Platz geh"ort zu einem Saal. Ein Saal besteht aus mindestens 10 Pl"atzen.}
+    \item \emph{In einem Saal k"onnen beliebig viele Vorstellungen stattfinden.}
+\end{itemize}
+Erg"anzen Sie das Klassendiagramm in der Abbildung um die Kardinalit"aten, sodass die Anforderungen erf"ullt sind. Fehlende Angaben m"ussen Sie sinnvoll erg"anzen. Welches Problem entsteht und wie k"onnte man es l"osen? \\
+\addpoints
+\begin{tikzpicture}[rectangle/.style = {minimum height = 1.5cm, minimum width = 3cm, draw = black}]
+    \matrix[column sep = 3cm, row sep = 3cm]{
+        %1st row
+        \node[rectangle] (00) {}; &
+        \node[rectangle] (01) {}; \\
+        %2nd row
+        \node[rectangle] (10) {}; &
+        \node[rectangle] (11) {}; \\
+    };
+    \draw (00) -- (01);
+    \draw (00) -- (10);
+    \draw (01) -- (11);
+    \draw (10) -- (11);
+\end{tikzpicture}
+
+\question[5] Nennen Sie f"ur die Phasen Anforderungsanalyse und Entwurf
+\noaddpoints
+\begin{parts}
+    \part[2] den Zusammenhang beider Phasen.
+    \part[1] eine Gemeinsamkeit beider Phasen.
+    \part[2] zwei Unterschiede beider Phasen.
+\end{parts}
+
+\question[2] Nennen sie zwei Aspekte, die beim Entwurf verglichen mit der Analyse zus"atzlich ber"ucksichtigt werden m"ussen.
+\addpoints
+
+\question[4] Nennen sie vier Entwurfskonzepte.
+\addpoints
+
+\question[6] Modularit"at ist eines der wichtigsten Entwurfskonzepte. Nennen und erl"autern sie drei weitere wichtige Entwurfskonzepte.
+\addpoints
+
+\question[3] Nennen sie je ein Beispiel f"ur funktionale Abstraktion, Datenbankabstraktion und Kontrollabstraktion.
+\addpoints
+
+\question[2] Nennen sie zwei positive Effekte durch hohe Modularit"at beim Software-Entwurf.
+\addpoints
 
 \begin{comment}
 {%
