@@ -764,18 +764,73 @@ Erg"anzen Sie das Klassendiagramm in der Abbildung um die Kardinalit"aten, sodas
 \question[7] Erl"autern sie den grunds"atzlichen Ablauf eines Tests, indem sie die Abbildung vervollst"andigen. Geben sie auch die jeweiligen Ergebnisse der Phasen an. \\
 \addpoints
 \begin{tikzpicture}[circle/.style={minimum size = 5mm, draw = black},
-                    rectangle/.style={draw = black, minimum height = 1cm, text width = 3cm}]
-    \matrix{
+                    rectangle/.style={draw = black, fill = black!20, minimum height = 8mm, text width = 3cm}]
+    \matrix[row sep = 5mm]{
         %1st row
         &
-        \node (erg0) {Ergebnis: \underline{\hspace{4cm}}}; &
+        \node (erg0) {Ergebnis: \underline{\hspace{3cm}}}; &
         & \\
         %2nd row
         \node[rectangle] (rect0) {}; &
         \node[circle] (circ0) {}; &
         & \\
+        %3rd row
+        &
+        \node[rectangle] (rect1) {}; &
+        & \\
+        %4th row
+        &
+        &
+        \node (erg1) {Ergebnis: \underline{\hspace{3cm}}}; & \\
+        %5th row
+        &
+        \node[rectangle] (rect2) {}; &
+        & \\
+        %6th row
+        &
+        &
+        \node (erg2) {Ergebnis: \underline{\hspace{3cm}}}; & \\
+        %7th row
+        &
+        \node[rectangle] (rect3) {}; &
+        & \\
+        %8th row
+        &
+        \node[circle] (circ1) {}; &
+        \node[rectangle] (rect4) {}; & \\
+        %9th row
+        \node (erg3) {Ergebnis: \underline{\hspace{3cm}}}; &
+        &
+        & \\
     };
+
+    \draw (erg0) to (rect0.east);
+    \draw[->] (rect0) to (circ0);
+    \draw[->] (circ0) to (rect1);
+    \draw (rect1) to (erg1);
+    \draw[->] (rect1) to (rect2);
+    \draw (rect2) to (erg2);
+    \draw[->] (rect2) to (rect3);
+    \draw (rect3) to (erg3);
+    \draw[->] (rect3) to (circ1);
+    \draw[->] (circ1) to (rect4);
 \end{tikzpicture}
+
+\question[6] Gegeben sei die folgende Funktionsdeklaration: \lstinline{function Test(eingabe: integer): integer} F"ur den Wertebereich des Parameters \texttt{eingabe} gilt: $10 \leq \texttt{eingabe} < 100$. Die Funktion \texttt{Test} soll durch ein Blackbox-Verfahren getestet werden.
+\addpoints
+\begin{parts}
+    \part Was sind sinnvolle "Aquivalenzklassen f"ur diese Funktion?
+    \part Geben sie f"ur jede "Aquivalenzklasse jeweils einen geeigneten Testfall an.
+\end{parts}
+
+\question[4] Nennen sie zwei Arten von Fehlern, welche mit Testen nicht gefunden werden k"onnen. Welche Alternativen stehen zur Verf"ugung, um diese Arten von Fehlern zu finden?
+\addpoints
+
+\question[2] Nennen sie zwei in der Vorlesung behandelte "Uberdeckungskriterien.
+\addpoints
+
+\question[2] Ist es generell bei einem Glassbox-Test immer m"oglich, dass jeder m"ogliche Pfas in einer Programmeinheit ausgef"uhrt werden kann? Begr"unden sie kurz ihre Meinung.
+\addpoints
 
 \begin{comment}
 {%
