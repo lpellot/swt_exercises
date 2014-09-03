@@ -7,7 +7,15 @@
 \usepackage{multicol}
 \usepackage[ngerman]{babel}
 \usepackage{tikz}
-\usetikzlibrary{petri, positioning}
+\usetikzlibrary{arrows, petri, positioning, shapes}
+
+\usepackage{listings}
+\lstset{
+    basicstyle = \ttfamily \footnotesize,
+    frame = single,
+    keepspaces = true,
+    numbers = left,
+}
 
 \newcommand{\class}{Softwaretechnik}
 \newcommand{\term}{Aufgabensammlung}
@@ -548,6 +556,226 @@ Erg"anzen Sie das Klassendiagramm in der Abbildung um die Kardinalit"aten, sodas
 
 \question[2] Nennen sie zwei positive Effekte durch hohe Modularit"at beim Software-Entwurf.
 \addpoints
+
+\question[4] Ein guter objektorientierter Entwurd hat einen starken logischen Zusammenhang innerhalb einer Komponente und pr"azise definierte, minimale Schnittstellen zwischen den Komponenten. Wie hei"sen die beiden zugeh"origen Qualit"atskriterien? Geben sie die Formel an, die aus diesen beiden Kriterien das Optimum berechnet.
+\addpoints
+
+\question[2] Erkl"aren sie kurz die Begriffe Koh"asion und Kopplung.
+\addpoints
+
+\question[4] Welcher Zusammenhang besteht zwischen Koh"asion und Kopplung und der Qualit"at eines Software-Entwurfs?
+\addpoints
+
+\question[2] Die Abbildung zeigt zwei Entwurfsskizzen. Die Rechtecke symbolisieren die Module, die Verbindungen die Kommunikationswege. Welche der beiden Entwurfsskizzen ist unter dem Aspekt der Kopplung besser zu bewerten? Begr"unden sie ihre Antwort kurz.\\
+\addpoints
+\begin{tikzpicture}[scale = .5]
+    \begin{scope}[rectangle/.style={draw = black, text width = 1cm, minimum height = 5mm}]
+        \node (0) at (2, 0) [rectangle] {};
+        \node (1) at (6, 0) [rectangle] {};
+        \node (2) at (8, 4) [rectangle] {};
+        \node (3) at (4, 7) [rectangle] {};
+        \node (4) at (0, 4) [rectangle] {};
+
+        \draw (0) -- (1);
+        \draw (0) -- (3);
+        \draw (1) -- (2);
+        \draw (1) -- (3);
+        \draw (2) -- (3);
+        \draw (2) -- (4);
+        \draw (3) -- (4);
+        \draw (4) -- (0);
+    \end{scope}
+
+    \begin{scope}[xshift = 14cm, rectangle/.style={draw = black, text width = 1cm, minimum height = 5mm}]
+        \node (0) at (2, 0) [rectangle] {};
+        \node (1) at (6, 0) [rectangle] {};
+        \node (2) at (8, 4) [rectangle] {};
+        \node (3) at (4, 7) [rectangle] {};
+        \node (4) at (0, 4) [rectangle] {};
+        \node (5) at (4, 4) [rectangle] {};
+
+        \draw (0) -- (5);
+        \draw (1) -- (5);
+        \draw (2) -- (5);
+        \draw (3) -- (5);
+        \draw (4) -- (5);
+    \end{scope}
+\end{tikzpicture}
+
+\question[4] Sind folgende Aussagen wahr oder falsch? Begr"unden sie ihre Antwort.
+\addpoints
+\begin{parts}
+    \part Auf den Feinentwurf kann man verzichten, auf den Implementierungsentwurf jedoch nicht.
+    \part Aufgrund der Struktur in einem DFD kann auf ein Transaktionszentrum geschlossen werden.
+    \part Eine gute Modularisierung ist eine wichtige Voraussetzung.
+    \part Ein Vorteil des Repositorymodells ist die Effizienz f"ur gro"se Datenbest"ande.
+\end{parts}
+
+\question[6] Nennen und beschreiben sie zwei der aus der Vorlesung bekannten Systemstrukturen. Nennen sie zu jedem jeweils zwei Vor- und Nachteile.
+\addpoints
+
+\question[4] Erkl"aren sie die Steuerstruktur 'Zentralistische Steuerung' anhand zweier m"oglicher Auspr"agungen.
+\addpoints
+
+\question[2] Nennen sie je eine m"ogliche Auspr"agung f"ur die Kontrollmodelle 'Zentralistische Steuerung' und 'Ereignisbasierte Steuerung'.
+\addpoints
+
+\question[4] Die modulare Zerlegung beschreibt die Zerlegung von Subsystemen in Module. Nennen sie zwei M"oglichkeiten der modularen Zerlegung und erl"autern sie diese kurz.
+\addpoints
+
+\question[4] Erkl"aren sie den Unterschied zwischen ereignisbasierter und zeitbasierter Steuerung im Rahmen des Architekturenentwurfs. In welchem Kontext sollte welches der beiden Kontrollmodelle eingesetzt werden?
+\addpoints
+
+\question[4] Nennen sie jeweils zwei Vor- und Nachteile des Client-Server-Modells.
+\addpoints
+
+\question[6] Geben sie durch Ankreuzen eines der Antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind. \\
+\addpoints
+\begin{tabular}{| p{12cm} | l | l |} \hline
+    Aussage & Wahr & Falsch \\ \hline
+    Ein Vorteil des Repositorymodells ist die Effizient f"ur gro"se Datenbest"ande. & & \\ \hline
+    Abstract-Machine-Modell wird auch "'Schichtenmodell"` genannt. & & \\ \hline
+    Der strukturierte Entwurf verwendet das Prinzip des Bottom-Up-Vorgehens. & & \\ \hline
+    Funktionsorientierte Entw"urfe eignen sich besonders f"ur Systeme mit komplexen Datenstrukturen. & & \\ \hline
+    Auf den Feinentwurf kann man verzichten, auf den Implementierungsentwurf nicht. & & \\ \hline
+    Eine gute Modularisierung ist eine wichtige Voraussetzung f"ur eine arbeitsteilige Implementierung. & & \\ \hline
+\end{tabular}
+
+\question[3] Sie bekommen den Auftrag, die Benutzerschnittstelle f"ur ein neues System zu entwerfen.
+\noaddpoints
+\begin{parts}
+    \part[1.5] Welche drei grunds"atzlichen Aspekte m"ussen sie dabei ber"ucksichtigen?
+    \part[1.5] Nennen sie drei Punkte, die sie kl"aren m"ussen, um eine gute Benutzerschnittstelle zu entwerfen.
+\end{parts}
+
+\question[3] Geben sie durch Ankreuzen eines der Antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind. \\
+\addpoints
+\begin{tabular}{| p{12cm} | l | l |} \hline
+    Aussage & Wahr & Falsch \\ \hline
+    Pair-Programming ist eine Auspr"agung des Ego-less-Programming. & & \\ \hline
+    Bei einer guten Kommentierung wird der Programmtext durch Umgangssprache paraphrasiert. & & \\ \hline
+    Mit dem Begriff meta CASE werden Werkzeuge bezeichnet, die andere Werkzeuge beinhalten, zusammenfassen oder einfach nur benutzen. & & \\ \hline
+\end{tabular}
+
+\question[2] Was ist bei Dokumentation grunds"atzlich zu beachten?
+\addpoints
+
+\question[2] Eine Grundvoraussetzung f"ur grunds"atzliche Dokumentation in einem Projekt ist, dass Verantwortlichkeiten und Anforderungen an die Dokumentation klar geregelt sind. Nennen sie vier weitere Grundvoraussetzungen f"ur zus"atzliche Dokumentationen.
+\addpoints
+
+\question[2] Nennen sie zwei Aspekte, die grunds"atzlich bei der zus"atzlichen Dokumentation beachtet werden sollen.
+\addpoints
+
+\question[3] Welche Aspekte hinsichtlich Werkzeuganforderungen m"ussen bei der Werkzeugwahl ber"ucksichtigt werden? Nennen sie vier Aspekte und erl"autern sie zwei davon anhand von Stichworten.
+\addpoints
+
+\question[3] Nennen sie drei Kriterien zur Klassifikation von Werkzeugen.
+\addpoints
+
+\question[4] Nennen sie vier Probleme bei der Auswahl von Werkzeugen f"ur die Softwareerstellung.
+\addpoints
+
+\question[3] Geben sie durch Ankreuzen eines der Antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind. \\
+\addpoints
+\begin{tabular}{| p{12cm} | l | l |} \hline
+    Aussage & Wahr & Falsch \\ \hline
+    Wichtig bei Programmierrichtlinien ist nicht, dass etwas geregelt wird, sondern wie genau etwas geregelt wird. & & \\ \hline
+    Rund 90\% aller Programmierer sind mit der Wartung und Verbesserung von altem Code besch"aftigt. & & \\ \hline
+    Mit dem Begriff upper CASE werden Werkzeuge bezeichnet, die in den fr"uhen Phasen der Entwicklung eingesetzt werden. & & \\ \hline
+\end{tabular}
+
+\question[6] Nennen sie zwei Beispiele f"ur Qualit"atsmerkmale von Software und zwei Beispiele f"ur Softwareattribute und erl"autern sie, wie diese zusammenh"angen.
+\addpoints
+
+\question[4] Differenziertheit und Vergleichbarkeit sind zwei wichtige Eigenschaften von Metriken. Nennen sie vier weitere wichtige Eigenschaften von Metriken und erkl"aren sie zwei davon mit jeweils einem Satz.
+\addpoints
+
+\question[4] Um die Qualit"at der Codedokumentation zu messen, wird eine Metrik mit $Q = \frac{\text{Anzahl der Codezeilen}}{\text{Anzahl der Kommentarzeilen}}$ definiert, wobei ein h"oherer Wert $Q$ eine h"ohere Qualit"at anzeigt. Zeigen sie, dass diese Metrik nicht plausibel ist.
+\addpoints
+
+\question[4] Nennen sie vier wichtige Eigenschaften von Metriken.
+\addpoints
+
+\question[3] Nennen sie drei wichtige Eigenschaften von Metriken und erl"autern sie diese jeweils in einem Satz.
+\addpoints
+
+\question[2] Was wird unter einer Metrix im Bereich Softwaretechnik verstanden?
+\addpoints
+
+\question[2] Die Abbildung zeigt den Ablaufgraph eines Bubblesort-Algorithmus. Geben sie die zyklomatische Komplexit"at des Algorithmus an und erkl"aren sie kurz, wie sie zu dem Ergebnis gekommen sind. \\
+\addpoints
+\begin{tikzpicture}[circle/.style={draw = black, minimum size = 1cm}]
+    \node[circle] (3) {$3$};
+    \node[circle] (4) [below = of 3] {$4$};
+    \node[circle] (6) [below = of 4,
+                        label = right:do] {$6$};
+    \node[circle] (7) [below = of 6] {$7$};
+
+    \node[circle] (15) [below left = of 7] {$15$};
+    \node[circle] (16) [below = of 15] {$16$};
+    \node[circle] (blankleft) [below = of 16] {};
+
+    \node[circle] (9) [below right = of 7,
+                        label = right:if] {$9$};
+    \node[circle] (1112) [below = of 9] {$11, 12$};
+    \node[circle] (blankright) [below = of 1112] {};
+
+    \draw[->] (3) to (4);
+    \draw[->] (4) to (6);
+    \draw[->] (6) to (7);
+    
+    \draw[->] (7) to
+        node[fill = white] {else}
+        (15);
+    \draw[->] (15) to (16);
+    \draw[->] (16) to (blankleft);
+    \draw[->, bend left = 45] (16) to (4);
+    
+    \draw[->] (7) to
+        node[fill = white] {$i < n-1$}
+        (9);
+    \draw[->] (9) to 
+        node[fill = white] {$A[i] > A[i+1]$}
+        (1112);
+    \draw[->, bend right = 75] (9) to
+        node[fill = white] {else}
+        (blankright);
+    \draw[->] (1112) to (blankright);
+    \draw[->, bend right = 90] (blankright) to (7);
+\end{tikzpicture}
+
+\question[3] Welche drei Arten von Qualit"atssicherungsma"snahmen gibt es? Nennen sie heweils die Ma"snahmenklasse und erkl"aren sie diese in jeweils einem Satz.
+\addpoints
+
+\question[4] Die zyklomatische Komplexit"at (McCabe-Metrik) misst die Komplexit"at eines Programms.
+\noaddpoints
+\begin{parts}
+    \part[3] Zeichnen sie den Ablaufgraphen zu
+        \begin{lstlisting}
+            do {
+                A;
+                if B then C; else D;
+            } while E;
+        \end{lstlisting}    
+    \part[1] Berechnen sie anhand des oben erzeugten Ablaufgraphen die zyklomatische Komplexit"at.
+\end{parts}
+\addpoints
+
+\question[7] Erl"autern sie den grunds"atzlichen Ablauf eines Tests, indem sie die Abbildung vervollst"andigen. Geben sie auch die jeweiligen Ergebnisse der Phasen an. \\
+\addpoints
+\begin{tikzpicture}[circle/.style={minimum size = 5mm, draw = black},
+                    rectangle/.style={draw = black, minimum height = 1cm, text width = 3cm}]
+    \matrix{
+        %1st row
+        &
+        \node (erg0) {Ergebnis: \underline{\hspace{4cm}}}; &
+        & \\
+        %2nd row
+        \node[rectangle] (rect0) {}; &
+        \node[circle] (circ0) {}; &
+        & \\
+    };
+\end{tikzpicture}
 
 \begin{comment}
 {%
