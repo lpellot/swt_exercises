@@ -1,5 +1,5 @@
 \documentclass[12pt]{exam}
-\usepackage[utf8]{inputenc}
+\usepackage[latin1]{inputenc}
 
 \usepackage{verbatim}
 \usepackage[margin=1in]{geometry}
@@ -17,6 +17,9 @@
     numbers = left,
 }
 
+\usepackage{fontspec}
+\setmainfont{Noto Sans}
+
 \newcommand{\class}{Softwaretechnik}
 \newcommand{\term}{Aufgabensammlung}
 \newcommand{\examnum}{}
@@ -30,6 +33,9 @@
 
 
 \begin{document}
+
+% todo
+% 20140508_103121
 
 \noindent
 \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r @{\extracolsep{6pt}} l}
@@ -816,7 +822,7 @@ Erg"anzen Sie das Klassendiagramm in der Abbildung um die Kardinalit"aten, sodas
     \draw[->] (circ1) to (rect4);
 \end{tikzpicture}
 
-\question[6] Gegeben sei die folgende Funktionsdeklaration: \lstinline{function Test(eingabe: integer): integer} F"ur den Wertebereich des Parameters \texttt{eingabe} gilt: $10 \leq \texttt{eingabe} < 100$. Die Funktion \texttt{Test} soll durch ein Blackbox-Verfahren getestet werden.
+\question[6] Gegeben sei die folgende Funktionsdeklaration: \\\lstinline{function Test(eingabe: integer): integer}\\ F"ur den Wertebereich des Parameters \texttt{eingabe} gilt: $10 \leq \texttt{eingabe} < 100$. Die Funktion \texttt{Test} soll durch ein Blackbox-Verfahren getestet werden.
 \addpoints
 \begin{parts}
     \part Was sind sinnvolle "Aquivalenzklassen f"ur diese Funktion?
@@ -832,10 +838,340 @@ Erg"anzen Sie das Klassendiagramm in der Abbildung um die Kardinalit"aten, sodas
 \question[2] Ist es generell bei einem Glassbox-Test immer m"oglich, dass jeder m"ogliche Pfas in einer Programmeinheit ausgef"uhrt werden kann? Begr"unden sie kurz ihre Meinung.
 \addpoints
 
+\question[12] Betrachten sie folgendes Listing.
+\noaddpoints
+\begin{lstlisting}
+    void Bubblesort( List<int> a )
+    {
+        int n = A.Count();
+        do
+        {
+            bool vertauscht = false;
+            for (int i=0; i < n-1; i++)
+            {
+                if (A[i] > A[i+1])
+                {
+                    vertausche (A, i, i+1);
+                    vertauscht = true;
+                }
+            }
+            n = n - 1;
+        } while(vertauscht && n>1);
+    }
+\end{lstlisting}
+\begin{parts}
+    \part[5] Die Methode soll einem Blackbox-Test unterzogen werden. Definieren sie f"unf sinnvolle Testf"alle. Achten sie auf eine m"oglichst gute "Uberdeckung.
+    \part[2] Der Bubblesort-Algorithmus aus dem Listing wird aus Performancegr"unden durch den Quicksort-Algorithmus ersetzt. Definieren sie wieder f"unf sinnvolle Testf"alle f"ur einen Blackbox-Test ud begr"unden sie kurz ihre Wahl. Sie d"urfen sich bei ihrer Antwort auf Teilaufgabe a) beziehen.
+    \part[5] Als Testfall eines Glassbox-Tests wird die Eingabe A = ${1, 2, 5, 4}$ angenommen. Welche Arten der "Uberdeckung erreicht man durch diesen Testfall? Begr"unden sie ihre Antwort kurz.
+\end{parts}
+
+\question[6] Gegeben seien ein Listing und der zugeh"orige Ablaufgraph f"ur einen Glassbox-Test. Als Testfall f"ur die Funktion im Listing wird die Konfiguration $k = 3, s = [1, 2, 3, 4, 5, 6, 7, 8]$ angenommen. Was f"ur ein "Uberdeckungsgrad wird durch diese Konfiguration erreicht? Begr"unden sie ihre Antwort kurz.
+\addpoints
+\begin{lstlisting}
+    function linsearch (k: integer, s: intarray): nat
+        var bot: nat = 1, top: nat = len(s), mid: nat,
+            found: bool = false, i: nat = 0
+
+        begin
+        while bot <= top do
+            if found
+                then exit
+                else mid = (top + bot) div 2
+                    if s[mid] < k
+                        then found = true, i = mid
+                        elsif s[mid] < k
+                            then bot = mid + 1
+                            else top = mid - 1
+                    fi
+            fi od
+        return i
+\end{lstlisting}
+\begin{tikzpicture}[circle/.style={draw = black, minimum size = 1cm}]
+    \node[circle] (1) {1};
+    \node[circle] (2) [below = of 1] {2};
+    \node[circle] (3) [below = of 2, label = right:While bot <{=} top] {3};
+    \node[circle] (4) [below left = of 3, label = right:Found 7] {4};
+    \node[circle] (5) [below right = of 3, label = right:s{[mid]} {=} k?] {5};
+    \node[circle] (6) [below left = of 5] {6};
+    \node[circle] (7) [below right = of 5, label = right:s{[mid]} < k?] {7};
+    \node[circle] (8) [below left = of 7] {8};
+    \node[circle] (9) [below right = of 7] {9};
+    \node[circle] (10) [below right = of 8] {10};
+    \node[circle] (11) [below left = of 10] {11};
+    \node[circle] (12) at (4 |- 11) {12};
+    \node[circle] (13) [below = of 12] {13};
+
+    \draw[->] (1) to (2);
+    \draw[->] (2) to (3);
+    \draw[->, bend right = 45] (2) to (12);
+    \draw[->, bend right = 45] (3) to (4);
+    \draw[->, bend left = 45] (3) to (5);
+    \draw[->, bend right = 45] (5) to (6);
+    \draw[->, bend left = 45] (5) to (7);
+    \draw[->, bend right = 22.5] (6) to (11);
+    \draw[->, bend right = 45] (7) to (8);
+    \draw[->, bend left = 45] (7) to (9);
+    \draw[->, bend right = 45] (8) to (10);
+    \draw[->, bend left = 45] (9) to (10);
+    \draw[->, bend right = 45] (10) to (11);
+    \draw[->, bend right = 90] (11) to (2);
+    \draw[->] (12) to (13);
+\end{tikzpicture}
+
+\question[3] Nennen sie drei wesentliche T"atigkeiten, die als Teil der Testvorbereitung durchgef"uhrt werden m"ussen.
+\addpoints
+
+\question[4] Nennen sie zwei St"arken und zwei Schw"achen von Tests.
+\addpoints
+
+\question[5] Geben sie an, ob folgende Aussagen wahr oder falsch sind. Begr"unden sie ihre Antwort jeweils.
+\addpoints
+\begin{parts}
+    \part "Aquivalenzklassen bei Black-Box-Test sind Teilbereich des Eingabebereichs einer Funktion die sich bez"uglich ihres Funktionswerts gleich verhalten.
+    \part Es ist generell m"oglich, bei einem Glassbox-Test immer alle vorhandenen Pfade auszuf"uhren.
+    \part Eine 100\%ige Zweig"uberdeckung impliziert eine 100\%ige Anweisungs"uberdeckung.
+    \part Bei einer Restfehlersch"atzung mittels Error Seeding wurden 25 Fehler injiziert. Die Pr"ufer haben acht echte Fehler und f"unf injizierte Fehler gefunden. Daraus l"asst sich schlie"sen, dass 40 echte Fehler existieren.
+    \part Eine dynamische Pr"ufung kann im V-Modell zu jedem Zeitpunkt durchgef"uhrt werden.
+\end{parts}
+
+\question[2] Erkl"aren sie, warum Laufversuche nicht als Test in der Qualit"atssicherung gelten k"onnen.
+\addpoints
+
+\question[2] Zwei wichtige Teststrategien sind Black Box- und White Box-Tests.
+\noaddpoints
+\begin{parts}
+    \part Nennen sie eine Grundlage, die zur Erstellung von Black Box-Tests notwendig ist.
+    \part Nennen sie eine Grundlage, die zur Erstellung von White Box-Tests notwendig ist.
+\end{parts}
+
+\question[3] Performanztest ist eine Form des Systemtests. Nennen sie drei weitere Formen des Systemtests und erkl"aren sie jede davon in einem Satz.
+\addpoints
+
+\question[3] Die Methode $sqrt(x): double$ berechnet die mathematische Funktion $\sqrt{x}$. Definieren sie eine m"oglichst kleine Menge an Testeingaben f"ur $x$, sodass alle "Aquivalenzklassen und Grenzwerte abgedeckt sind.
+\addpoints
+
+\question[6] Erl"autern sie in ganzen S"atzen anhand der auszuf"uhrenden Schritte den prinzipiellen Ablauf eines Reviews.
+\addpoints
+
+\question[6] Sie m"ussen ein Review f"ur ein 50 Seiten starkes Dokument planen. F"ur dieses Review ist eine "'Dritte Stunde"` nicht vorgesehen. \\Ein Gutachter schatt 10 Seiten pro Stunde, 3 Gutachter werden ben"otigt. F"ur jeden Teilnehmer des Reviews werden Kosten von 200 Euro pro Stunde veranschlagt. F"ur ihren Zeitaufwand zur Planung k"onnen sie 2 Stunden veranschlagen. \\Berechnen Sie den Gesamtaufwand und die Kosten f"ur Ihr komplettes Review unter Angabe der einzelnen Rechenschritte.
+\addpoints
+
+\question[4] Ist ein Review in allen Phasen der Systementwicklung nach dem V-Modell
+\begin{parts}
+    \part m"oglich?
+    \part sinnvoll?
+\end{parts}
+Begr"unden Sie jeweils ihre Meinung.
+
+\question[5] Nennen Sie f"unf wesentliche Schritte eines Review und die jeweils darin involvierten Rollen.
+\addpoints
+
+\question[4] Nennen sie zwei St"arken und zwei Schw"achen von Reviews.
+\addpoints
+
+\question[2] Nennen sie vier charakteristische Merkmale f"ur ein Projekt.
+\addpoints
+
+\question[4] Nennen sie zwei prim"are und zwei sekund"are Ziele des Projektmanagements.
+\addpoints
+
+\question[6] Erl"autern sie die Function-Point-Methode anhand der Ausgangslage und der Vorgehensschritte.
+\addpoints
+
+\question[5] Die Function-Point-Methode ist eine Technik zur Aufwandssch"atzung. Erkl"aren sie diese Methode anhand der f"unf Schritte, die durchgef"uhrt werden m"ussen.
+\addpoints
+
+\question[2] Function Points sind ein abstraktes Ma"s f"ur den Aufwand. Wie kommt man zu konkreten Zahlenwerten (wie beispielsweise f"ur die Anzahl der ben"otigten Mitarbeiter oder den Codeumfang)?
+\addpoints
+
+\question[6] Die Berechnung bewerteter Function Points geschieht mit der Formel $FP = UFP \cdot VAF$, wobei $VAF = 0,65 \cdot 0,01 \cdot TDI$ ist.
+\noaddpoints
+\begin{parts}
+    \part[4] Erkl"aren sie, wie man grunds"atzlich vorgehen muss, um $UFP$ zu erhalten.
+    \part[2] Welche Aussage steckt hinter dem Faktor $TDI$? Erkl"aren sie in ganzen S"atzen.
+\end{parts}
+
+\question[4] Die Aufwandssch"atzung nach Function Points kann auch mithilfe sogenannter bewerteter Function Points vorgenommen werden. Diese werden (nach IFPUG 1994) folgenderma"sen bewertet: $FP = UFP \cdot VAF$, wobei $UFP$ die (aus den funktionalen Anforderungen bestimmten) unbewerteten Function Points und $VAF$ den Wertkorrekturfaktor bezeichnen. Der $VAF$ setzt sich folgenderma"sen zusammen: $0,65 + 0,01 \cdot TDI$.
+\begin{parts}
+    \part[2] Welche Aussage steckt hinter dem Faktor $TDI$?
+    \part[2] Geben sie einen konkreten Wertebereich an, innerhalb dessen sie der Wertkorrekturfaktor ($VAF$) bewegt.
+\end{parts}
+
+\question[4.5] Der Aufwand wird bei COCOMO mittels $A \cdot KDSI^b$ berechnet. $A$ und $b$ sind dabei von der Projektklasse abh"angig. Nennen Sie die verschiedenen Projektklassen von COCOMO und erkl"aren sie, wie diese charakterisiert sind.
+\addpoints
+
+\question[2] Nennen sie zwei Unterschiede zwischen COCOMO und COCOMO II.
+\addpoints
+
+\question[3] Eine M"oglichkeit, Aufwand zu sch"atzen, ist die Verwendung der Formel $\text{Aufwand} = A \cdot KDSI^b$.
+\noaddpoints
+\begin{parts}
+    \part[1] Um welches Sch"atzverfahren handelt es sich dabei?
+    \part[2] F"ur welche Projektcharakteristika stehen die Parameter $A$, $KDSI$, und $b$?
+\end{parts}
+
+\question[2] Nennen sie zwei Hauptbeteiligte an einem Projekt.
+\addpoints
+
+\question[4.5] Nennen sie die drei wichtigsten Projektbeteiligten/Rollen udn beschreiben sie stichpunktartig deren Aufgaben und Verantwortlichen im Projekt.
+\addpoints
+
+\question[4] Brooks' Law besagt: \emph{Adding mapower to a late project makes it even later}. K"onnen sie dieser Aussage zustimmen? Begr"unden sie ihre Meinung. Nennen sie zwei weiter nicht zu empfehlende Ma"snahmen.
+\addpoints
+
+\question[6] In ihrem Projekt sto"sen sie nach der H"alfte der veranschlagten Zeit auf ein erhebliches Problem. Sie k"onnen das Projekt deshalb nicht mehr wie geplant zu Ende bringen. Welche Ma"snahmen k"onnen sie ergreifen, um das Projekt trotzdem erfolgreich abschlie"sen zu k"onnen? Nennen sie drei Ma"snahmen und erkl"aren sie diese kurz.
+\addpoints
+
+\question[4] Bei ihrem Projekt sto"sen sie nach der H"alfte der veranschlagten Zeit auf erhebliche Probleme. Sie k"onnen das Projekt deshalb nicht wie geplant zu Ende bringen. Welche Ma"snahmen k"onnen sie ergreifen? Nennen sie zwei empfehlenswerte Ma"snahmen und zwei nicht zu empfehlende Ma"snahmen.
+\addpoints
+
+\question[6] Die Abbildung zeigt die Produktivit"at eines Projektteams "uber der Zeit. Erkl"aren sie die Ph"anomene, die zu beobachten sind, wenn zum Zeitpunkt $B$ neue Mitarbeiter zum Projektteam hinzugef"ugt werden. Welche Erkenntnisse kann man daraus f"ur das Management gewinnen? \\
+\addpoints
+\begin{tikzpicture}
+    % Achsen
+    \draw[->] (0, 0) -- node[xshift = 5cm, yshift = -3mm] {Zeit} (12, 0);
+        \foreach \x/\xtext in {2/A, 5/B, 9/C}
+        \draw (\x, 3mm) -- node[yshift = -6mm] {\xtext} (\x, -3mm);
+    \draw[->] (0, 0) -- node[rotate = 90, xshift = 2cm, yshift = 3mm] {Produktivit"at} (0, 7);
+
+    % Dotted line stuff
+    \draw[dashed] (0, 5) -- (12, 5);
+
+    % Fancy shaped thick line stuff
+    \draw[very thick] (0, 6) -- (5, 6) -- (5, 2) -- (5, 2) arc (180:90:3) -- (12, 5);
+\end{tikzpicture}
+
+\question[6] Benennen sie die Organisationsformen der Projektteams in der Abbildung und nennen sie jeweils einen Vor- und Nachteil zu jeder Form. \\
+\addpoints
+\begin{tikzpicture}[circle/.style={minimum size = 5mm, draw = black}]
+    \matrix[column sep = 2mm, row sep = 5mm]{
+       %1st row
+       &
+       &
+       \node[circle] (1) {}; &
+       &
+       & \\
+
+       %2nd row
+       \node[circle] (2) {}; &
+       &
+       &
+       &
+       \node[circle] (0) {}; & \\
+
+       %3rd row
+       &
+       &
+       &
+       &
+       & \\
+
+       %4th row
+       &
+       \node[circle] (3) {}; &
+       &
+       \node[circle] (4) {}; &
+       & \\
+    };
+
+    \draw (0) -- (1);
+    \draw (0) -- (2);
+    \draw (0) -- (3);
+    \draw (0) -- (4);
+    \draw (1) -- (2);
+    \draw (1) -- (3);
+    \draw (1) -- (4);
+    \draw (2) -- (3);
+    \draw (2) -- (4);
+    \draw (3) -- (4);
+
+    \matrix[xshift = 5cm, column sep = 5mm, row sep = 5mm]{
+        %1st row
+        &
+        &
+        \node[circle] (02) {};
+        &
+        & \\
+
+        %2nd row
+        &
+        \node[circle] (11) {}; &
+        \node[circle] (12) {}; &
+        \node[circle] (13) {}; &
+        & \\
+
+        %3rd row
+        \node[circle] (20) {}; &
+        \node[circle] (21) {}; &
+        \node[circle] (22) {}; &
+        \node[circle] (23) {}; &
+        \node[circle] (24) {}; & \\
+    };
+
+    \draw (02) -- (11);
+    \draw (02) -- (12);
+    \draw (02) -- (13);
+    \draw (11) -- (20);
+    \draw (11) -- (21);
+    \draw (11) -- (22);
+    \draw (13) -- (23);
+    \draw (13) -- (24);
+\end{tikzpicture}
+
+\question[2] Begründen sie stichpunktartig, warum eine demokratische Teamorganisation für große Softwareprojekte mit mehreren Dutzenden Mitarbeitern ungeeignet ist.
+\addpoints
+
+\question[2] Nennen sie zwei Möglichkeiten, ein Projekt in eine Firmenorganisation einzubetten.
+\addpoints
+
+\question[4] Innerhalb kürzester Zeit soll eine kleine Webseite entstehen, auf der Besucher biologische Sachverhalte wie die Vererbung am Beispiel unterschiedlich farbiger Mäuse nachvollziehen können. Die Webseite soll über ein kreatives Design verfügen, technisch auf dem neuesten Stand sein, und die Qualität der biologischen Inhalte soll von höchstem Niveau sein. \\Da ihr Unternehmen schon lange Software entwickelt, hat sich in ihrem Unternehmen eine hierarchische Teamorganisation etabliert. Durch welche Argumente überzeugen sie ihren Chef, dass für dieses Projekt eine anarchische Organisation besser geeignet ist?
+\addpoints
+
+\question[9] Betrachten sie die drei folgende Szenarien und entscheiden sie je Szenario, wie die Organisationsstruktur des jeweiligen Projektteams aussehen sollte. Begründen sie jeweils kurz ihre Entscheidung.
+\addpoints
+
+Szenario 1: Innerhalb kürzester Zeit soll eine kleine Webseite entstehen, auf der besucher biologische Sachverhalte wie die Vererbung am Beispiel unterschiedlich farbiger Mäuse nachvollziehen können. Die Webseite soll über ein kreatives Design verfügen, technisch auf dem neuesten Stand sein und die Qualität der biologischen Inhalte soll von höchstem Niveau sein.
+
+Szenario 2: Für einen Avionik-Zulieferer soll innerhalb von zwei Jahren mit einem großen Team ein neues System zur Steuerung des Kabinendrucks in einem Passagierflugzeug entwickelt werden. Dieses System soll in Zukunft erweitert werden und auch in anderen Flugzeugtypen Verwendung finden.
+
+Szenario 3: Eine sehr kleine Softwarefirma, in der alle Mitarbeiter auch Teilhaber sind, möchte ihre internen Prozesse durch eine selbst entwickelte Software unterstützen.
+
+\question[3] Bewerten sie anhand der Trendanalysen in der Abbildung die Qualität der Projektplanung. \\
+\addpoints
+\begin{tikzpicture}[scale = 2]
+    \begin{scope}
+        \draw[->] (0, 0) -- (2, 0);
+        \draw[->] (0, 0) -- (0, 2);
+        \draw[dotted] (0, 0) -- (2, 2);
+
+        \draw[thick] (0, 0.5) -- (0.4, 0.8) -- (0.5, 0.5);
+        \draw[thick] (0, 1) -- (0.2, 0.8) -- (0.3, 1) -- (0.5, 1) -- (0.7, 1.2) -- (1, 1);
+        \draw[thick] (0, 1.2) -- (0.3, 1.3) -- (0.4, 1.7) -- (0.5, 1.2) -- (0.6, 1.5) -- (0.7, 1.4) -- (1, 1.3) -- (1.1, 1.4) -- (1.2, 1.2);
+    \end{scope}
+
+    \begin{scope}[xshift = 3cm]
+        \draw[->] (0, 0) -- (2, 0);
+        \draw[->] (0, 0) -- (0, 2);
+        \draw[dotted] (0, 0) -- (2, 2);
+
+        \draw[thick, yshift = 4.5mm] (0, 0) -- (0.25, 0) -- (0.5, 0.1) -- (1.95, 1.55);
+        \draw[thick, yshift = 5.5mm] (0, 0) -- (0.25, 0.1) -- (0.5, 0.25) -- (1.85, 1.45);
+        \draw[thick, yshift = 8mm] (0, 0) -- (0.3, 0.1) -- (0.45, 0.05) -- (1.8, 1.2);
+    \end{scope}
+
+    \begin{scope}[xshift = 6cm]
+        \draw[->] (0, 0) -- (2, 0);
+        \draw[->] (0, 0) -- (0, 2);
+        \draw[dotted] (0, 0) -- (2, 2);
+
+        \draw[thick] (0, 1.5) -- (0.3, 1.45) -- (1, 1);
+        \draw[thick] (0, 1.7) -- (0.3, 1.7) -- (0.65, 1.65) -- (0.75, 1.6) -- (1.2, 1.2);
+        \draw[thick] (0, 1.8) -- (0.2, 1.9) -- (0.5, 1.75) -- (0.7, 1.85) -- (1.2, 1.7) -- (1.3, 1.3);
+    \end{scope}
+\end{tikzpicture}
+
 \begin{comment}
 {%
-% changing choice items style locally
-\renewcommand*\thechoice{\arabic{choice}} 
 \renewcommand*\choicelabel{\thechoice)}
 %
 \question[2] Element with $Z=92$ is:
