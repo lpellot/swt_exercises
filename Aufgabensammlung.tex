@@ -1170,6 +1170,89 @@ Szenario 3: Eine sehr kleine Softwarefirma, in der alle Mitarbeiter auch Teilhab
     \end{scope}
 \end{tikzpicture}
 
+\question[1] Sie sind Projektleiter des umfangreichen Softwareprojekts \emph{RouPla}. Ihre Teilprojektleiter für die Teilprojekte \emph{RouPla.1}, \emph{RouPla.2}, und \emph{RouPla.3} schicken ihnen im Verlauf des Projekts folgende Planungsdaten: \\
+\begin{tabular}{| r | c | c | c | c | c | c |} \hline
+    am & 01.11.09 & 15.11.09 & 01.12.09 & 15.12.09 & 01.01.10 & 15.01.10 \\ \hline
+    \emph{RouPla.1} Soll-Fertig & 01.01.10 & 20.01.10 & 30.01.10 & 10.02.10 & 15.02.10 & 25.02.10 \\ \hline
+    \emph{RouPla.2} Soll-Fertig & 01.02.10 & 15.01.10 & 30.03.10 & 15.01.10 & 15.02.10 & 01.02.10 \\ \hline
+    \emph{RouPla.2} Soll-Fertig & 15.04.10 & 01.04.10 & 20.03.10 & 01.03.10 & 15.02.10 & 10.02.10 \\ \hline
+\end{tabular}
+\noaddpoints
+\begin{parts}
+    \part[7] Überprüfen sie die Planungsfähigkeiten ihrer Teilprojektleiter. Zeichnen sie auf Basis der Planungsdaten für jedes Teilprojekt in der Abbildung ein Meilensteintrendanalysediagramm einschließlich Beschriftung der Achsen. \\
+    \begin{tikzpicture}[scale = 2]
+        \foreach \x/\xshift in {1/0, 2/3, 3/6}{
+            \begin{scope}[xshift = \xshift cm]
+                \foreach \x in {0.0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8}
+                    \draw (\x, -.5mm) -- (\x, .5mm);
+                \foreach \y in {0.0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8}
+                    \draw (-.5mm, \y) -- (.5mm, \y);
+                \draw[->] (0, 0) -- node[near end, yshift = 4mm, fill = white] {\footnotesize RouPla\x} (2, 0);
+                \draw[->] (0, 0) -- (0, 2);
+                \draw[dotted] (0, 0) -- (2, 2);
+            \end{scope}
+        };
+    \end{tikzpicture}
+    
+    \part[4] Ihr Teilprojektleiter \emph{RouPla.3} liefer ihnen nun zum dritten Mal eine ähnliche Planung ab. Wie beurteilen sie die Planungsfähigkeiten ihres Teilprojektleiters \emph{RouPla.3}? Was sagen sie dem Teilprojektleiter? Begründen sie ihre Meinung.
+\end{parts}
+
+\question[4] Der Projektverlauf kann mittels Meilensteintrendanalyse verfolgt werden. Zeichnen sie in den Diagrammen in der Abbildung jeweils mindestens eine Trendlinie ein, die zu dem entsprechenden Projekt passen könnte. \\
+\begin{tikzpicture}
+    \foreach \xshift/\xtext in {0/{Ideales Projekt}, 3.5/{Projekt nicht beherrschbar}, 7/{Projekt ohne Fortschritt}, 10.5/{Projekt mit überschätztem Aufwand}}{
+        \begin{scope}[xshift = \xshift cm]
+            \draw[->] (0, 0) -- node[below, text width = 2.5cm] {\footnotesize \xtext} (2.5, 0);
+            \draw[->] (0, 0) -- (0, 2.5);
+            \draw[dotted] (0, 0) -- (2.5, 2.5);
+        \end{scope}
+    };
+\end{tikzpicture}
+\addpoints
+
+\question[5] Was sind die vier wesentlichen Tätigkeiten im Risikomanagement? Nennen sie die Tätigkeiten analog zum logischen, zeitlichen Ablauf.
+\addpoints
+
+\question[6] Nennen sie die vier Aktivitäten des Risikomanagements und nennen sie zu jeder Aktivität ein mögliches Vorgehen.
+\addpoints
+
+\question[3] Nennen sie sechs konkrete Risiken, die den Erfolg von Softwareprojekten gefährden können.
+\addpoints
+
+\question[2] Nennen sie je ein Beispiel für ein Produkt- und ein Projektrisiko.
+\addpoints
+
+\question[4] Nennen sie zwei Beispiele für Produktrisiken und zwei Beispiele für Projektrisiken.
+\addpoints
+
+\question[2] Nennen sie je ein Beispiel für ein Prozess- und ein Projektrisiko.
+\addpoints
+
+\question[4] Sie haben in ihrem Projekt ein Risiko identifiziert.
+\noaddpoints
+\begin{parts}
+    \part[2] Nennen sie die Aspekte, welche sie bei der Bewertung des Risikos berücksichtigen müssen.
+    \part[2] Nennen sie vier grundsätzliche Möglichkeiten, welche sie zur Verfügung haben, um auf das Risiko zu reagieren.
+\end{parts}
+
+\question[10] Eine Risikobewertung kann quantitativ erfolgen. Dazu wird die \emph{Risk Exposure} des Risikos $r$ und sienen möglichen Auswirkungen $a$ mittels $Exp(r) = \sum_aP(a) \cdot S(a)$ berechnet.
+\noaddpoints
+\begin{parts}
+    \part[2] Erklären sie jeweils die Bedeutung von $P(a)$ und $S(a)$.
+    \part[2] Auch die Bewertung einer Gegenmaßnahme $m$ kann quantitativ erfolgen. Erklären sie die dazugehórige Formel für die Risk Reduction Leverage $RRL(r, m) = \frac{Exp(r) - Exp (r|m}{K(m)}$. Wie sind die Werte von RRL zu interpretieren?
+    \part[6] Wird ein Flugzeug nur alle 20 Flüge gewartet, so kommt es bei 50\% der Flüge zu Komfortverlusten für die Passagiere, bei 25\% der Flüge zu Reiseverzögerungen, und bei 0.001\% der Flüge zu einem Absturz. Ein Komfortverlust kostet die Airline 5000€, eine Reiseverzögerung 50000€ und ein Absturz 100 Mio.€. \\Durch die Halbierung des Wartungsintervalls entstehen 50000€ Zusatzkosten. Dafür treten Reiseverzögerungen nur noch bei 5\% und Abstürze nur noch bei 0,0001\% der Flüge auf. \\Ist die Maßnahme rein finanziell betrachtet sinnvoll? Berechnen sie dazu die RRL der Maßnahme.
+\end{parts}
+\addpoints
+
+\question[2] Was ist CMM und wofür wird es eingesetzt?
+
+\question[5] Ihr Unternehmen hat bereits Level 2 im Capability Maturity Model (CMM) erreicht und hat demnach grundlegende Kompetenzen in den Schlüsselbereichen Konfigurationsmanagement, Projektplanung, Projekt-Controlling, und Qualitätssicherung. \\Ihr Chef beauftragt sie, innerhalb des nächsten Jahres die CMM-Zertifizierung ihres Unternehmens bis einschließlich Stufe 5 umzusetzen. Da ihm die Zertifizierung besonders wichtig ist, sagt er zu, ihnen sowohl das notwendige Budget als auch notwendiges Personal im von ihnen geforderten Umfang zur Verfügung zu stellen.
+\noaddpoints
+\begin{parts}
+    \part[2] Nennen sie zwei Maßnahmen, die für das Erreichen des Level 5 von Leven 2 aus im CMM mindestens nötig sind.
+    \part[3] Lässt sich die ihnen gestellte Aufgabe, innerhalb eines Jahres, von CMM Level 2 auf CMM Level 5 zu kommen, umsetzen? Erläutern sie, welche Maßnahmen notwendig sind, oder begründen sie, warum eine Realisierung des Auftrages nicht möglich ist.
+\end{parts}
+\addpoints
+
 \begin{comment}
 {%
 \renewcommand*\choicelabel{\thechoice)}
