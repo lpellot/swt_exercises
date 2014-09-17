@@ -6,8 +6,12 @@
 \usepackage{amsmath,amssymb}
 \usepackage{multicol}
 \usepackage[ngerman]{babel}
+
 \usepackage{tikz}
 \usetikzlibrary{arrows, petri, positioning, shapes}
+\tikzset{
+    > = latex,
+}
 
 \usepackage{listings}
 \lstset{
@@ -36,7 +40,6 @@
 
 % todo
 % 20140508_103121
-
 \noindent
 \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r @{\extracolsep{6pt}} l}
 \textbf{\class} & \textbf{Name:} & \makebox[2in]{\hrulefill}\\
@@ -45,13 +48,13 @@
 \textbf{\examdate} &&\\
 \textbf{Time Limit: \timelimit} & Teaching Assistant & \makebox[2in]{\hrulefill}
 \end{tabular*}\\
+\begin{comment}
 \rule[2ex]{\textwidth}{2pt}
-
 This exam contains \numpages\ pages (including this cover page) and \numquestions\ questions.\\
 Total of points is \numpoints.
 
 Rest of introduction. Rest of introduction. Rest of introduction. Rest of introduction. Rest of introduction. Rest of introduction. Rest of introduction. Rest of introduction. 
-
+\end{comment}
 \begin{comment}
 \begin{center}
 Grade Table (for teacher use only)\\
@@ -149,11 +152,11 @@ Ein Verteilungsdiagramm zeigt die Kommunikationsverbindungen und Abhängigkeiten
     \end{checkboxes}
     \part[1] \textbf{Kreuzen} Sie {Ihre Antwort an}. \\Wie viel Prozent der Programmierer in Unternehmen sind laut Vorlesung durchschnittlich mit der Wartung und Verbesserung von altem Code beschäftigt?
     \begin{checkboxes}
-        \choice $<10\%$
-        \choice $10-29\%$
-        \choice $30-50\%$
-        \choice $51-70\%$
-        \choice $>70\%$
+        \choice $<$10\%
+        \choice 10-29\%
+        \choice 30-50\%
+        \choice 51-70\%
+        \choice $>$70\%
     \end{checkboxes}
 \end{parts}
 \addpoints
@@ -271,9 +274,10 @@ Ein Verteilungsdiagramm zeigt die Kommunikationsverbindungen und Abhängigkeiten
 \question[2] Ordnen Sie das V-Modell 97 in den \textbf{Kontext der Vorgehens- und Prozessmodelle} ein.
 \addpoints
 
-\question[2] Geben sie durch Ankreuzen des jeweiligen Feldes an, ob die folgenden Aussagen wahr oder falsch sind.
+\question[2] Geben sie durch Ankreuzen des jeweiligen Feldes an, ob die folgenden Aussagen wahr oder falsch sind. \\
 \addpoints
-\begin{tabular}{| p{12cm} | c | c |}
+\begin{tabular}{| p{12cm} | c | c |} \hline
+    Aussage & Wahr & Falsch \\ \hline
     Zu den Submodellen des V-Modells geh"ort das Werkzeugmanagement. & & \\ \hline
     Das Spiralmodell ist ein generisches Modell f"ur Projektmanagement. & & \\ \hline
 \end{tabular}
@@ -439,7 +443,7 @@ Ein Verteilungsdiagramm zeigt die Kommunikationsverbindungen und Abhängigkeiten
     Der Zweck einer statischen Pr"ufung ist f"u die Pr"ufung irrelevant. & & \\ \hline
     Der letzte Schritt eines Reviews ist stets die Nacharbeit. & & \\ \hline
     Bei einer Restfehlersch"atzung mittels error seeding wurden 25 Fehler injeziert. Die Pr"ufer haben 8 echte Fehler und 5 injuzierte Fehler gefunden. Daraus l"asst sich schlie"sen, dass 40 echte Fehler existieren. & & \\ \hline
-    Die Erhebung von Metriken ist ein systematischer Test. & & \\ \hline1
+    Die Erhebung von Metriken ist ein systematischer Test. & & \\ \hline
 \end{tabular}
 
 \question[8] Geben sie durch Ankreuzen eines der antwortfelder an, ob die folgenden Aussagen wahr oder falsch sind. \\
@@ -465,13 +469,13 @@ Ein Verteilungsdiagramm zeigt die Kommunikationsverbindungen und Abhängigkeiten
 \end{parts}
 \addpoints
 
-\question[2] Nennen sie zwei Aspekte, die beim entwurd verglichen mit der Analyse zus"atzlich ber"ucksichtigt werden m"ussen.
+\question[2] Nennen sie zwei Aspekte die beim Entwurf, verglichen mit der Analyse, zusätzlich berücksichtigt werden müssen.
 \addpoints
 
-\question[4] Nennen sie vier Entwurdskonzepte.
+\question[4] Nennen sie vier Entwurfskonzepte.
 \addpoints
 
-\question[6] Modularit"at ist eines der wichtigsten Entwurfskonzepte. Nennen und erl"autern sie drei weitere wichtige Entwurfskonzepte.
+\question[6] Modularität ist eines der wichtigsten Entwurfskonzepte. Nennen und erläutern sie drei weitere wichtige Entwurfskonzepte.
 \addpoints
 
 \question[3] Nennen sie je ein Beispiel f"ur funktionale Abstraktion, Datenabstraktion und Kotrollabstraktion.
@@ -490,7 +494,7 @@ Ein Verteilungsdiagramm zeigt die Kommunikationsverbindungen und Abhängigkeiten
 \addpoints
 
 \question[8] Vervollst"andigen Sie das UML-Klassendiagramm in der Abbildung so, dass es folgenden Sachverhalt als Dom"anenmodell beschreibt. Vergessen Sie nicht, auch die Kardinalit"aten anzugeben! \\
-\emph{Tutorien an der Universit"at Ulm \\Ein Tutor hat einen Namen, eine E-Mail-Adresse und eine Adresse. Er oder die h"alt mindestens ein Tutorium. Kedes Tutorium wird von genau einem tutor geleitet. Ein Student (mit Name, Matrikelnummer und E-Mail) nimmt an genau einem Tutorium teil. An einem Tutorium k"onnen maximal 20 Studenten teilnehmen. Es gibt keine Tutorien ohne Teilnehmer. Tutorien finden an einem oder mehreren Terminen (mit Datum, Uhrzeit und Dauer) statt. Da mehrere R"aume zur Verf"ugung stehen, k"onnen Tutorien auch parallel stattfinden. Ein Stundenplan besteht aus beliebig vielen Terminen. Ein Termin kann auch in mehreren Stundenpl"anen auftauchen, muss aber in mindestens einem vorhanden sein. Auch leere Stundenpl"ane sind m"oglich. Einem Termin ist ein Raum zugeordnet. R"aume haben eine Raumbezeichung.} \\
+\emph{Tutorien an der Universit"at Ulm \\Ein Tutor hat einen Namen, eine E-Mail-Adresse und eine Adresse. Er oder sie h"alt mindestens ein Tutorium. Jedes Tutorium wird von genau einem Tutor geleitet. Ein Student (mit Name, Matrikelnummer und E-Mail) nimmt an genau einem Tutorium teil. An einem Tutorium k"onnen maximal 20 Studenten teilnehmen. Es gibt keine Tutorien ohne Teilnehmer. Tutorien finden an einem oder mehreren Terminen (mit Datum, Uhrzeit und Dauer) statt. Da mehrere R"aume zur Verf"ugung stehen, k"onnen Tutorien auch parallel stattfinden. Ein Stundenplan besteht aus beliebig vielen Terminen. Ein Termin kann auch in mehreren Stundenpl"anen auftauchen, muss aber in mindestens einem vorhanden sein. Auch leere Stundenpl"ane sind m"oglich. Einem Termin ist ein Raum zugeordnet. R"aume haben eine Raumbezeichung.} \\
 \addpoints
 \begin{tikzpicture}[title/.style={rectangle, minimum height = 2cm, minimum width = 3cm, draw = black}]
     \matrix[column sep = 1.5cm, row sep = 1cm]{
@@ -519,7 +523,7 @@ Ein Verteilungsdiagramm zeigt die Kommunikationsverbindungen und Abhängigkeiten
 \begin{itemize}
     \item \emph{Das System verwaltet Pl"atze, Reservierungen, S"ale und Vorstellungen.}
     \item \emph{Eine Reservierung besteht aus mehreren Pl"atzen (mindestens einem) und geh"ort zu genau einer Vorstellung.}
-    \item \emph{Zu einer vorstellung kann es mehrere (aber auch keine) Reservierung/-en geben.}
+    \item \emph{Zu einer Vorstellung kann es mehrere (aber auch keine) Reservierung/-en geben.}
     \item \emph{Eine Vorstellung findet in genau einem Saal statt. Ein Platz geh"ort zu einem Saal. Ein Saal besteht aus mindestens 10 Pl"atzen.}
     \item \emph{In einem Saal k"onnen beliebig viele Vorstellungen stattfinden.}
 \end{itemize}
@@ -639,8 +643,8 @@ Erg"anzen Sie das Klassendiagramm in der Abbildung um die Kardinalit"aten, sodas
 \addpoints
 \begin{tabular}{| p{12cm} | l | l |} \hline
     Aussage & Wahr & Falsch \\ \hline
-    Ein Vorteil des Repositorymodells ist die Effizient f"ur gro"se Datenbest"ande. & & \\ \hline
-    Abstract-Machine-Modell wird auch "'Schichtenmodell"` genannt. & & \\ \hline
+    Ein Vorteil des Repositorymodells ist die Effizienz für große Datenbestände. & & \\ \hline
+    Abstract-Machine-Modell wird auch "`Schichtenmodell"' genannt. & & \\ \hline
     Der strukturierte Entwurf verwendet das Prinzip des Bottom-Up-Vorgehens. & & \\ \hline
     Funktionsorientierte Entw"urfe eignen sich besonders f"ur Systeme mit komplexen Datenstrukturen. & & \\ \hline
     Auf den Feinentwurf kann man verzichten, auf den Implementierungsentwurf nicht. & & \\ \hline
@@ -861,7 +865,7 @@ Erg"anzen Sie das Klassendiagramm in der Abbildung um die Kardinalit"aten, sodas
 \end{lstlisting}
 \begin{parts}
     \part[5] Die Methode soll einem Blackbox-Test unterzogen werden. Definieren sie f"unf sinnvolle Testf"alle. Achten sie auf eine m"oglichst gute "Uberdeckung.
-    \part[2] Der Bubblesort-Algorithmus aus dem Listing wird aus Performancegr"unden durch den Quicksort-Algorithmus ersetzt. Definieren sie wieder f"unf sinnvolle Testf"alle f"ur einen Blackbox-Test ud begr"unden sie kurz ihre Wahl. Sie d"urfen sich bei ihrer Antwort auf Teilaufgabe a) beziehen.
+    \part[2] Der Bubblesort-Algorithmus aus dem Listing wird aus Performancegr"unden durch den Quicksort-Algorithmus ersetzt. Definieren sie wieder f"unf sinnvolle Testf"alle f"ur einen Blackbox-Test und begr"unden sie kurz ihre Wahl. Sie d"urfen sich bei ihrer Antwort auf Teilaufgabe a) beziehen.
     \part[5] Als Testfall eines Glassbox-Tests wird die Eingabe A = ${1, 2, 5, 4}$ angenommen. Welche Arten der "Uberdeckung erreicht man durch diesen Testfall? Begr"unden sie ihre Antwort kurz.
 \end{parts}
 
@@ -953,7 +957,7 @@ Erg"anzen Sie das Klassendiagramm in der Abbildung um die Kardinalit"aten, sodas
 \question[6] Erl"autern sie in ganzen S"atzen anhand der auszuf"uhrenden Schritte den prinzipiellen Ablauf eines Reviews.
 \addpoints
 
-\question[6] Sie m"ussen ein Review f"ur ein 50 Seiten starkes Dokument planen. F"ur dieses Review ist eine "'Dritte Stunde"` nicht vorgesehen. \\Ein Gutachter schatt 10 Seiten pro Stunde, 3 Gutachter werden ben"otigt. F"ur jeden Teilnehmer des Reviews werden Kosten von 200 Euro pro Stunde veranschlagt. F"ur ihren Zeitaufwand zur Planung k"onnen sie 2 Stunden veranschlagen. \\Berechnen Sie den Gesamtaufwand und die Kosten f"ur Ihr komplettes Review unter Angabe der einzelnen Rechenschritte.
+\question[6] Sie m"ussen ein Review f"ur ein 50 Seiten starkes Dokument planen. F"ur dieses Review ist eine "`Dritte Stunde"' nicht vorgesehen. \\Ein Gutachter schatt 10 Seiten pro Stunde, 3 Gutachter werden ben"otigt. F"ur jeden Teilnehmer des Reviews werden Kosten von 200 Euro pro Stunde veranschlagt. F"ur ihren Zeitaufwand zur Planung k"onnen sie 2 Stunden veranschlagen. \\Berechnen Sie den Gesamtaufwand und die Kosten f"ur Ihr komplettes Review unter Angabe der einzelnen Rechenschritte.
 \addpoints
 
 \question[4] Ist ein Review in allen Phasen der Systementwicklung nach dem V-Modell
@@ -990,12 +994,15 @@ Begr"unden Sie jeweils ihre Meinung.
     \part[4] Erkl"aren sie, wie man grunds"atzlich vorgehen muss, um $UFP$ zu erhalten.
     \part[2] Welche Aussage steckt hinter dem Faktor $TDI$? Erkl"aren sie in ganzen S"atzen.
 \end{parts}
+\addpoints
 
 \question[4] Die Aufwandssch"atzung nach Function Points kann auch mithilfe sogenannter bewerteter Function Points vorgenommen werden. Diese werden (nach IFPUG 1994) folgenderma"sen bewertet: $FP = UFP \cdot VAF$, wobei $UFP$ die (aus den funktionalen Anforderungen bestimmten) unbewerteten Function Points und $VAF$ den Wertkorrekturfaktor bezeichnen. Der $VAF$ setzt sich folgenderma"sen zusammen: $0,65 + 0,01 \cdot TDI$.
+\noaddpoints
 \begin{parts}
     \part[2] Welche Aussage steckt hinter dem Faktor $TDI$?
     \part[2] Geben sie einen konkreten Wertebereich an, innerhalb dessen sie der Wertkorrekturfaktor ($VAF$) bewegt.
 \end{parts}
+\addpoints
 
 \question[4.5] Der Aufwand wird bei COCOMO mittels $A \cdot KDSI^b$ berechnet. $A$ und $b$ sind dabei von der Projektklasse abh"angig. Nennen Sie die verschiedenen Projektklassen von COCOMO und erkl"aren sie, wie diese charakterisiert sind.
 \addpoints
@@ -1009,6 +1016,7 @@ Begr"unden Sie jeweils ihre Meinung.
     \part[1] Um welches Sch"atzverfahren handelt es sich dabei?
     \part[2] F"ur welche Projektcharakteristika stehen die Parameter $A$, $KDSI$, und $b$?
 \end{parts}
+\addpoints
 
 \question[2] Nennen sie zwei Hauptbeteiligte an einem Projekt.
 \addpoints
@@ -1026,7 +1034,6 @@ Begr"unden Sie jeweils ihre Meinung.
 \addpoints
 
 \question[6] Die Abbildung zeigt die Produktivit"at eines Projektteams "uber der Zeit. Erkl"aren sie die Ph"anomene, die zu beobachten sind, wenn zum Zeitpunkt $B$ neue Mitarbeiter zum Projektteam hinzugef"ugt werden. Welche Erkenntnisse kann man daraus f"ur das Management gewinnen? \\
-\addpoints
 \begin{tikzpicture}
     % Achsen
     \draw[->] (0, 0) -- node[xshift = 5cm, yshift = -3mm] {Zeit} (12, 0);
@@ -1040,9 +1047,9 @@ Begr"unden Sie jeweils ihre Meinung.
     % Fancy shaped thick line stuff
     \draw[very thick] (0, 6) -- (5, 6) -- (5, 2) -- (5, 2) arc (180:90:3) -- (12, 5);
 \end{tikzpicture}
+\addpoints
 
 \question[6] Benennen sie die Organisationsformen der Projektteams in der Abbildung und nennen sie jeweils einen Vor- und Nachteil zu jeder Form. \\
-\addpoints
 \begin{tikzpicture}[circle/.style={minimum size = 5mm, draw = black}]
     \matrix[column sep = 2mm, row sep = 5mm]{
        %1st row
@@ -1117,6 +1124,7 @@ Begr"unden Sie jeweils ihre Meinung.
     \draw (13) -- (23);
     \draw (13) -- (24);
 \end{tikzpicture}
+\addpoints
 
 \question[2] Begründen sie stichpunktartig, warum eine demokratische Teamorganisation für große Softwareprojekte mit mehreren Dutzenden Mitarbeitern ungeeignet ist.
 \addpoints
@@ -1128,13 +1136,12 @@ Begr"unden Sie jeweils ihre Meinung.
 \addpoints
 
 \question[9] Betrachten sie die drei folgende Szenarien und entscheiden sie je Szenario, wie die Organisationsstruktur des jeweiligen Projektteams aussehen sollte. Begründen sie jeweils kurz ihre Entscheidung.
+\begin{parts}
+    \part Szenario 1: Innerhalb kürzester Zeit soll eine kleine Webseite entstehen, auf der besucher biologische Sachverhalte wie die Vererbung am Beispiel unterschiedlich farbiger Mäuse nachvollziehen können. Die Webseite soll über ein kreatives Design verfügen, technisch auf dem neuesten Stand sein und die Qualität der biologischen Inhalte soll von höchstem Niveau sein.
+    \part Szenario 2: Für einen Avionik-Zulieferer soll innerhalb von zwei Jahren mit einem großen Team ein neues System zur Steuerung des Kabinendrucks in einem Passagierflugzeug entwickelt werden. Dieses System soll in Zukunft erweitert werden und auch in anderen Flugzeugtypen Verwendung finden.
+    \part Szenario 3: Eine sehr kleine Softwarefirma, in der alle Mitarbeiter auch Teilhaber sind, möchte ihre internen Prozesse durch eine selbst entwickelte Software unterstützen.
+\end{parts}
 \addpoints
-
-Szenario 1: Innerhalb kürzester Zeit soll eine kleine Webseite entstehen, auf der besucher biologische Sachverhalte wie die Vererbung am Beispiel unterschiedlich farbiger Mäuse nachvollziehen können. Die Webseite soll über ein kreatives Design verfügen, technisch auf dem neuesten Stand sein und die Qualität der biologischen Inhalte soll von höchstem Niveau sein.
-
-Szenario 2: Für einen Avionik-Zulieferer soll innerhalb von zwei Jahren mit einem großen Team ein neues System zur Steuerung des Kabinendrucks in einem Passagierflugzeug entwickelt werden. Dieses System soll in Zukunft erweitert werden und auch in anderen Flugzeugtypen Verwendung finden.
-
-Szenario 3: Eine sehr kleine Softwarefirma, in der alle Mitarbeiter auch Teilhaber sind, möchte ihre internen Prozesse durch eine selbst entwickelte Software unterstützen.
 
 \question[3] Bewerten sie anhand der Trendanalysen in der Abbildung die Qualität der Projektplanung. \\
 \addpoints
@@ -1238,7 +1245,7 @@ Szenario 3: Eine sehr kleine Softwarefirma, in der alle Mitarbeiter auch Teilhab
 \noaddpoints
 \begin{parts}
     \part[2] Erklären sie jeweils die Bedeutung von $P(a)$ und $S(a)$.
-    \part[2] Auch die Bewertung einer Gegenmaßnahme $m$ kann quantitativ erfolgen. Erklären sie die dazugehórige Formel für die Risk Reduction Leverage $RRL(r, m) = \frac{Exp(r) - Exp (r|m}{K(m)}$. Wie sind die Werte von RRL zu interpretieren?
+    \part[2] Auch die Bewertung einer Gegenmaßnahme $m$ kann quantitativ erfolgen. Erklären sie die dazugehórige Formel für die Risk Reduction Leverage $RRL(r, m) = \frac{Exp(r) - Exp (r|m)}{K(m)}$. Wie sind die Werte von RRL zu interpretieren?
     \part[6] Wird ein Flugzeug nur alle 20 Flüge gewartet, so kommt es bei 50\% der Flüge zu Komfortverlusten für die Passagiere, bei 25\% der Flüge zu Reiseverzögerungen, und bei 0.001\% der Flüge zu einem Absturz. Ein Komfortverlust kostet die Airline 5000€, eine Reiseverzögerung 50000€ und ein Absturz 100 Mio.€. \\Durch die Halbierung des Wartungsintervalls entstehen 50000€ Zusatzkosten. Dafür treten Reiseverzögerungen nur noch bei 5\% und Abstürze nur noch bei 0,0001\% der Flüge auf. \\Ist die Maßnahme rein finanziell betrachtet sinnvoll? Berechnen sie dazu die RRL der Maßnahme.
 \end{parts}
 \addpoints
