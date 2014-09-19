@@ -7,6 +7,8 @@
 \usepackage{multicol}
 \usepackage[ngerman]{babel}
 
+\usepackage{xparse}
+
 \usepackage{tikz}
 \usetikzlibrary{arrows, petri, positioning, shapes}
 \tikzset{
@@ -714,7 +716,7 @@ Erg"anzen Sie das Klassendiagramm in der Abbildung um die Kardinalit"aten, sodas
 
 \question[2] Die Abbildung zeigt den Ablaufgraph eines Bubblesort-Algorithmus. Geben sie die zyklomatische Komplexit"at des Algorithmus an und erkl"aren sie kurz, wie sie zu dem Ergebnis gekommen sind. \\
 \addpoints
-\begin{tikzpicture}[circle/.style={draw = black, minimum size = 1cm}]
+\begin{tikzpicture}[circle/.style={ellipse, draw = black, minimum size = 1cm}]
     \node[circle] (3) {$3$};
     \node[circle] (4) [below = of 3] {$4$};
     \node[circle] (6) [below = of 4,
@@ -890,7 +892,7 @@ Erg"anzen Sie das Klassendiagramm in der Abbildung um die Kardinalit"aten, sodas
             fi od
         return i
 \end{lstlisting}
-\begin{tikzpicture}[circle/.style={draw = black, minimum size = 1cm}]
+\begin{tikzpicture}[circle/.style={ellipse, draw = black, minimum size = 1cm}]
     \node[circle] (1) {1};
     \node[circle] (2) [below = of 1] {2};
     \node[circle] (3) [below = of 2, label = right:While bot <{=} top] {3};
@@ -1050,7 +1052,7 @@ Begr"unden Sie jeweils ihre Meinung.
 \addpoints
 
 \question[6] Benennen sie die Organisationsformen der Projektteams in der Abbildung und nennen sie jeweils einen Vor- und Nachteil zu jeder Form. \\
-\begin{tikzpicture}[circle/.style={minimum size = 5mm, draw = black}]
+\begin{tikzpicture}[circle/.style={ellipse, minimum size = 5mm, draw = black}]
     \matrix[column sep = 2mm, row sep = 5mm]{
        %1st row
        &
